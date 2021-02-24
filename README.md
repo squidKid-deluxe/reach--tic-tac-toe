@@ -1,10 +1,10 @@
-<center>
-  # Pay-to-play
-  
-  # Tic-tac-toe
-  
-  # created with reach
-</center>
+
+# Pay-to-play
+
+# Tic-tac-toe
+
+# created with reach
+
 
 
 <p align="center"> 
