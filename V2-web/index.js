@@ -185,15 +185,6 @@ class Player extends React.Component {
             };
         }
 
-        // Draw O symbol at location of size
-        function draw_o(x, y, h, w) {
-            const base_image = new Image();
-            base_image.src = "https://imgur.com/h1xuIW1.png";
-            base_image.onload = function () {
-                cxt_xo.drawImage(base_image, x, y, h, w);
-            };
-        }
-
         // Draw granite background
         function draw_granite() {
             const base_image = new Image();
