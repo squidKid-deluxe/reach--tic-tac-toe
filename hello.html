@@ -1,0 +1,132 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <style>
+        canvas {
+        	border:solid 8px
+        }
+    </style>
+    <title>hello</title>
+</head>
+
+<body>
+    <div>
+    	<!-- create canvases and layer them with a z-index. -->
+        <canvas id="granite" width="500" height="500" style="z-index:0; position:absolute; left:0px; top:0px"></canvas>
+        <canvas id="board" width="500" height="500" style="z-index:1; position:absolute; left:0px; top:0px"></canvas>
+        <canvas id="xsandos" width="500" height="500" style="z-index:2; position:absolute; left:0px; top:0px"></canvas>
+    </div>
+    <script>
+    // create canvas context to draw granite background
+    var cvs_granite = document.getElementById('granite');
+    var cxt_granite = cvs_granite.getContext('2d');
+
+    // create canvas context to draw board
+    var cvs_board = document.getElementById('board');
+    var cxt_board = cvs_board.getContext('2d');
+
+    // create canvas context to draw X's and O's
+    var cvs_xo = document.getElementById('xsandos');
+    var cxt_xo = cvs_xo.getContext('2d');
+
+
+    // Draw granite and board upon appropriate layer
+    draw_granite();
+    draw_board();
+
+    // draw specific X's, numbered by numeric keypad
+    draw_x7();
+    draw_x4();
+    draw_x1();
+    draw_x8();
+    draw_x5();
+    draw_x2();
+    draw_x9();
+    draw_x6();
+    draw_x3();
+
+    // draw specific O's, numbered by numeric keypad
+    draw_o7();
+    draw_o4();
+    draw_o1();
+    draw_o8();
+    draw_o5();
+    draw_o2();
+    draw_o9();
+    draw_o6();
+    draw_o3();
+
+    // coordinate map x's and o's
+    // so left column
+	function draw_o7() {draw_piece("o", 150, 95, 50, 50)}
+	function draw_o4() {draw_piece("o", 115, 170, 55, 55)}
+	function draw_o1() {draw_piece("o", 80, 250, 60, 60)}
+	// o center column
+	function draw_o8() {draw_piece("o", 240, 110, 52, 52)}
+	function draw_o5() {draw_piece("o", 220, 185, 57, 57)}
+	function draw_o2() {draw_piece("o", 192, 270, 62, 62)}
+	// o right column
+	function draw_o9() {draw_piece("o", 340, 130, 54, 54)}
+	function draw_o6() {draw_piece("o", 325, 205, 59, 59)}
+	function draw_o3() {draw_piece("o", 310, 290, 64, 64)}
+	// x left column
+	function draw_x7() {draw_piece("x", 150, 95, 50, 50)}
+	function draw_x4() {draw_piece("x", 115, 170, 55, 55)}
+	function draw_x1() {draw_piece("x", 80, 250, 60, 60)}
+	// x center column
+	function draw_x8() {draw_piece("x", 240, 110, 52, 52)}
+	function draw_x5() {draw_piece("x", 220, 185, 57, 57)}
+	function draw_x2() {draw_piece("x", 192, 270, 62, 62)}
+	// x right column
+	function draw_x9() {draw_piece("x", 340, 130, 54, 54)}
+	function draw_x6() {draw_piece("x", 325, 205, 59, 59)}
+	function draw_x3() {draw_piece("x", 310, 290, 64, 64)}
+
+
+    // Draw X symbol at location of size
+    function draw_piece(piece, x, y, h, w)
+    {
+      const urls = {
+      				"x":'https://imgur.com/eBsDAXr.png',
+      				"o":'https://imgur.com/h1xuIW1.png'
+      			   }
+      const base_image = new Image();
+      base_image.src = urls[piece]
+
+      base_image.onload = function(){
+        cxt_xo.drawImage(base_image, x, y, h, w);
+      }
+    }
+
+    // Draw O symbol at location of size
+    function draw_o(x, y, h, w)
+    {
+      const base_image = new Image();
+      base_image.src = 'https://imgur.com/h1xuIW1.png';
+      base_image.onload = function(){
+        cxt_xo.drawImage(base_image, x, y, h, w);
+      }
+    }
+
+    // Draw granite background
+    function draw_granite()
+      {
+        const base_image = new Image();
+        base_image.src = 'https://imgur.com/8xyLP7U.png';
+        base_image.onload = function(){
+          cxt_granite.drawImage(base_image, 0, 0, 500, 500);
+        }
+      }
+
+      // Draw tic tac toe game board
+      function draw_board()
+      {
+        const base_image = new Image();
+        base_image.src = 'https://imgur.com/ppFPJWm.png';
+        base_image.onload = function(){
+          cxt_board.drawImage(base_image, 0, 0, 500, 500);
+        }
+      }
+    </script>
+</body>
