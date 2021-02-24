@@ -1,0 +1,78 @@
+body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background-color: black;
+}
+
+code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
+}
+.App {
+    text-align: center;
+}
+
+.App-header {
+    background-color: black;
+    min-height: 1px;
+    /*background-repeat: no-repeat;*/
+    /*background-size: 2800px 1600px;*/
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(3vh);
+    color: white;
+}
+
+.App-link {
+    color: #61dafb;
+}
+
+input[type="number"] {
+    font-size: calc(10px + 2vmin);
+    width: 4em;
+}
+
+/*@font-face {
+    font-family: Chalkboard;
+    src: url("/home/oracle/reach/tic-tac/views/Chalk Board.ttf");
+}*/
+
+button {
+    font-size: calc(10px + 2vmin);
+    /*font-family:Chalkboard;*/
+    background-image: url("https://imgur.com/5eD5R0x.png");
+    width: 250px;
+    height: 50px;
+    background-repeat: no-repeat;
+    background-size: 250px 50px;
+    background-color: black;
+    border: none;
+    padding: 10px;
+    color: black;
+    font-weight: bold;
+}
+
+#numpad {
+    width: 50px;
+    height: 50px;
+    background-size: 50px 50px;
+    margin-left: 15px;
+    margin-right: 15px;
+}
+
+textarea {
+    font-size: calc(10px + 2vmin);
+}
+
+.ContractInfo {
+    font-size: calc(10px + 1vmin);
+    text-align: left;
+    width: 90vw;
+    height: 7em;
+    padding: 2vw;
+    overflow-x: scroll;
+    white-space: pre;
+}
