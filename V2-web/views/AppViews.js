@@ -1,17 +1,13 @@
 import React from "react";
 
-/*
-const logo = `https://i.imgur.com/j5j7Nqb.png`;
-const title = https://imgur.com/CvC4dQR.png
-
-
-
-
-*/
-
 const exports = {};
 
+// FIXME:  Add start screen
 // exports.Start = class extends React.Component
+
+/////////////////////////////////////////////////////////////////////////
+// The content defined here will be displayed at the top of every page //
+/////////////////////////////////////////////////////////////////////////
 
 exports.Wrapper = class extends React.Component {
     render() {
@@ -31,11 +27,40 @@ exports.Wrapper = class extends React.Component {
     }
 };
 
+//
+//
+//
+
+exports.Start = class extends React.Component {
+    render() {
+        return (
+            <div id="bullutin">
+                <p style={{ fontSize: 50 }}>
+                    Rules of the game:
+                    <br />
+                    1) if you decide to remove yourself from the game before it ends, YOU WILL LOSE ALL YOUR FUNDS!!!
+                    <br />
+                    2) Wager is collected at the start of the game, but fees for particular spots are collected throughout the game
+                </p>
+                <button onClick="">I Agree</button>
+            </div>
+        );
+    }
+};
+
+///////////////////////////////////////////////////
+// Create the page for connecting to the account //
+///////////////////////////////////////////////////
+
 exports.ConnectAccount = class extends React.Component {
     render() {
         return <div>Please wait while we connect to your account. If this takes more than a few seconds, there may be something wrong.</div>;
     }
 };
+
+/////////////////////////////////////////////////
+// Fund a devnet account if the user so wishes //
+/////////////////////////////////////////////////
 
 exports.FundAccount = class extends React.Component {
     render() {
@@ -58,6 +83,10 @@ exports.FundAccount = class extends React.Component {
         );
     }
 };
+
+////////////////////////////////////////////////////////
+// Ask if a player wants to be a deployer or attacher //
+////////////////////////////////////////////////////////
 
 exports.DeployerOrAttacher = class extends React.Component {
     render() {

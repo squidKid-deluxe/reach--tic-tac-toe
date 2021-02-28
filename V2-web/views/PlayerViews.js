@@ -2,98 +2,141 @@ import React from "react";
 
 const exports = {};
 
-// Player views must be extended.
-// It does not have its own Wrapper view.
+////////////////////////////////////////////
+// Player views must be extended.         //
+// It does not have its own Wrapper view. //
+////////////////////////////////////////////
+
+/////////////////////////////////////
+// Page for winning/losing message //
+/////////////////////////////////////
+
 exports.Finale = class extends React.Component {
     render() {
-        const { whowon } = this.props;
+        const { won } = this.props;
         return (
             <div>
-                <h1>{!whowon ? "YOU WIN!" : "YOU LOST!"}</h1>
+                <h1>{!won ? "YOU WIN!" : "YOU LOSE!"}</h1>
             </div>
         );
     }
 };
 
-exports.makeCanvas = class extends React.Component {
-    render() {
-        return (
-            <div style={{ width: 500, height: 500 }}>
-                <canvas id="granite" width="500" height="500" style={{ zIndex: 0 }}>
-                    bah humbug
-                </canvas>
-                <canvas id="board" width="500" height="500" style={{ zIndex: 1 }}>
-                    bah humbug
-                </canvas>
-                <canvas id="xsandos" width="500" height="500" style={{ zIndex: 2 }}>
-                    bah humbug
-                </canvas>
-            </div>
-        );
-    }
-};
+////////////////////////////////////////////////////////
+// Get hand function for waiting fo the other player. //
+////////////////////////////////////////////////////////
 
 exports.GetHandb = class extends React.Component {
     render() {
         const { parent } = this.props;
         return (
-            <div>
-                <h3>Waiting for the other player to play their move...</h3>
+            <div class="container">
+                Waiting for the other player...
+                <center>
+                    <img src="https://imgur.com/CsxXjde.png" width="900px" height="720px" style={{ zIndex: 0, position: "absolute", top: "0px", left: "50%", marginLeft: "-450px" }}></img>
+                </center>
+                <center>
+                    <img src="https://imgur.com/Hla2Ybx.png" width="900px" height="720px" style={{ zIndex: 1, position: "absolute", top: "0px", left: "50%", marginLeft: "-450px" }}></img>
+                </center>
+                <center>
+                    <div style={{ zIndex: 2, position: "absolute", top: "145px", left: "50%", marginLeft: "-800px" }}>
+                        <div class="drop-targets">
+                            <pre> </pre>
+                            <img class="box7" id="box7"></img>
+                            <pre> </pre>
+                            <img class="box8" id="box8"></img>
+                            <pre> </pre>
+                            <img class="box9" id="box9"></img>
+                            <pre></pre>
+                        </div>
+                        <div class="drop-targets">
+                            <pre> </pre>
+                            <img class="box4" id="box4"></img>
+                            <pre> </pre>
+                            <img class="box5" id="box5"></img>
+                            <pre> </pre>
+                            <img class="box6" id="box6"></img>
+                            <pre></pre>
+                        </div>
+                        <div class="drop-targets">
+                            <pre> </pre>
+                            <img class="box1" id="box1"></img>
+                            <pre> </pre>
+                            <img class="box2" id="box2"></img>
+                            <pre> </pre>
+                            <img class="box3" id="box3"></img>
+                            <pre></pre>
+                        </div>
+                    </div>
+                </center>
             </div>
         );
     }
 };
 
+//////////////////////////////
+// Get the move of a player //
+//////////////////////////////
+
 exports.GetHand = class extends React.Component {
     render() {
-        const { parent, playable, hand } = this.props;
+        const { parent } = this.props;
         return (
-            <div>
-                {hand ? "Pick again." : ""}
-                <br />
-                {!playable ? "Please wait..." : ""}
-                <br />
-                <button disabled={!playable} onClick={() => parent.playHand("7")} id="numpad">
-                    7
-                </button>
-                <button disabled={!playable} onClick={() => parent.playHand("8")} id="numpad">
-                    8
-                </button>
-                <button disabled={!playable} onClick={() => parent.playHand("9")} id="numpad">
-                    9
-                </button>
-                <br />
-                <br />
-                <button disabled={!playable} onClick={() => parent.playHand("4")} id="numpad">
-                    4
-                </button>
-                <button disabled={!playable} onClick={() => parent.playHand("5")} id="numpad">
-                    5
-                </button>
-                <button disabled={!playable} onClick={() => parent.playHand("6")} id="numpad">
-                    6
-                </button>
-                <br />
-                <br />
-                <button disabled={!playable} onClick={() => parent.playHand("1")} id="numpad">
-                    1
-                </button>
-                <button disabled={!playable} onClick={() => parent.playHand("2")} id="numpad">
-                    2
-                </button>
-                <button disabled={!playable} onClick={() => parent.playHand("3")} id="numpad">
-                    3
-                </button>
-                <br />
+            <div class="container">
+                <center>
+                    <img src="https://imgur.com/CsxXjde.png" width="900px" height="720px" style={{ zIndex: 0, position: "absolute", top: "300px", left: "50%", marginLeft: "-450px" }}></img>
+                </center>
+                <center>
+                    <img src="https://imgur.com/Hla2Ybx.png" width="900px" height="720px" style={{ zIndex: 1, position: "absolute", top: "300px", left: "50%", marginLeft: "-450px" }}></img>
+                </center>
+                <center>
+                    <div style={{ zIndex: 2, position: "absolute", top: "445px", left: "50%", marginLeft: "-500px" }}>
+                        <div class="drop-targets">
+                            <pre> </pre>
+                            <img class="box7" onclick={() => parent.setimg("box7")} id="box7"></img>
+                            <pre> </pre>
+                            <img class="box8" onclick={() => parent.setimg("box8")} id="box8"></img>
+                            <pre> </pre>
+                            <img class="box9" onclick={() => parent.setimg("box9")} id="box9"></img>
+                            <pre></pre>
+                        </div>
+                        <div class="drop-targets">
+                            <pre> </pre>
+                            <img class="box4" onclick={() => parent.setimg("box4")} id="box4"></img>
+                            <pre> </pre>
+                            <img class="box5" onclick={() => parent.setimg("box5")} id="box5"></img>
+                            <pre> </pre>
+                            <img class="box6" onclick={() => parent.setimg("box6")} id="box6"></img>
+                            <pre></pre>
+                        </div>
+                        <div class="drop-targets">
+                            <pre> </pre>
+                            <img class="box1" onclick={() => parent.setimg("box1")} id="box1"></img>
+                            <pre> </pre>
+                            <img class="box2" onclick={() => parent.setimg("box2")} id="box2"></img>
+                            <pre> </pre>
+                            <img class="box3" onclick={() => parent.setimg("box3")} id="box3"></img>
+                            <pre></pre>
+                        </div>
+                    </div>
+                </center>
             </div>
         );
     }
 };
+
+/////////////////////
+// Timeout message //
+/////////////////////
 
 exports.Timeout = class extends React.Component {
     render() {
         return <div>There's been a timeout. (Someone took too long.)</div>;
     }
 };
+
+//////////////////////////
+// Export the functions //
+//////////////////////////
 
 export default exports;

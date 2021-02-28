@@ -3,7 +3,9 @@ import PlayerViews from "./PlayerViews";
 
 const exports = { ...PlayerViews };
 
-const sleep = (milliseconds) => new Promise((resolve) => setTimeout(resolve, milliseconds));
+//////////////////////////////////
+// Wrapper page fo the deployer //
+//////////////////////////////////
 
 exports.Wrapper = class extends React.Component {
     render() {
@@ -16,6 +18,10 @@ exports.Wrapper = class extends React.Component {
         );
     }
 };
+
+////////////////////////////////////////
+// Page to set the wager for the game //
+////////////////////////////////////////
 
 exports.SetWager = class extends React.Component {
     render() {
@@ -31,6 +37,10 @@ exports.SetWager = class extends React.Component {
     }
 };
 
+///////////////////////////////////
+// Screen to deploy the contract //
+///////////////////////////////////
+
 exports.Deploy = class extends React.Component {
     render() {
         const { parent, wager, standardUnit } = this.props;
@@ -44,24 +54,21 @@ exports.Deploy = class extends React.Component {
     }
 };
 
+////////////////////////////////////////////////
+// Display that we are deploying the contract //
+////////////////////////////////////////////////
+
 exports.Deploying = class extends React.Component {
     render() {
         return <div>Deploying... please wait.</div>;
     }
 };
 
-exports.WaitingForAttacher = class extends React.Component {
-    async copyToClipborad(button) {
-        const { ctcInfoStr } = this.props;
-        navigator.clipboard.writeText(ctcInfoStr);
-        const origInnerHTML = button.innerHTML;
-        button.innerHTML = "Copied!";
-        button.disabled = true;
-        await sleep(1000);
-        button.innerHTML = origInnerHTML;
-        button.disabled = false;
-    }
+/////////////////////////////////////////////////////////////////////////////////
+// Give the contract info and say that we are waiting for the attacher to join //
+/////////////////////////////////////////////////////////////////////////////////
 
+exports.WaitingForAttacher = class extends React.Component {
     render() {
         const { ctcInfoStr } = this.props;
         return (

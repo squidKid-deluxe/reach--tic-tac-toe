@@ -5,6 +5,7 @@ export function renderDOM(app) {
     ReactDOM.render(<React.StrictMode>{app}</React.StrictMode>, document.getElementById("root"));
 }
 
+
 export function renderView(parent, Views) {
     parent.state = parent.state || {};
     const { view, ContentView } = parent.state;
