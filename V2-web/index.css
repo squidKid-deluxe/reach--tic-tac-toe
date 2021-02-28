@@ -3,27 +3,28 @@ body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    background-color: black;
+    background-image: url("https://imgur.com/aLfgujc.png");
+    background-size: 500px 500px;
+    color: #c1a57c;
 }
 
 code {
     font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
+    color: #c1a57c;
+    background-color: black;
 }
 .App {
     text-align: center;
 }
 
 .App-header {
-    background-color: black;
+    color: #c1a57c;
     min-height: 1px;
     /*background-repeat: no-repeat;*/
     /*background-size: 2800px 1600px;*/
-    display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
-    font-size: calc(3vh);
-    color: white;
+    font-size: 25px;
 }
 
 .App-link {
@@ -31,17 +32,15 @@ code {
 }
 
 input[type="number"] {
-    font-size: calc(10px + 2vmin);
-    width: 4em;
+    font-size: 20px;
+    width: 40px;
+    color: #c1a57c;
+    background-color: black;
+    border-color: #c1a57c;
 }
 
-/*@font-face {
-    font-family: Chalkboard;
-    src: url("/home/oracle/reach/tic-tac/views/Chalk Board.ttf");
-}*/
-
 button {
-    font-size: calc(10px + 2vmin);
+    font-size: 22px;
     /*font-family:Chalkboard;*/
     background-image: url("https://imgur.com/5eD5R0x.png");
     width: 250px;
@@ -55,6 +54,11 @@ button {
     font-weight: bold;
 }
 
+#bullutin {
+    background-image: url("https://imgur.com/pvcgja6.png");
+    background-repeat: round;
+}
+
 #numpad {
     width: 50px;
     height: 50px;
@@ -64,15 +68,134 @@ button {
 }
 
 textarea {
-    font-size: calc(10px + 2vmin);
+    font-size: 20px;
+    color: #d1b58c;
+    background-color: black;
+    border-image-source: url("https://imgur.com/Oz4JZlv.png");
+    border-image-width: 5;
+    border-image-slice: 183;
+    border-image-repeat: round;
+    overflow: hidden;
+    resize: none;
 }
 
 .ContractInfo {
-    font-size: calc(10px + 1vmin);
+    font-size: 20px;
     text-align: left;
-    width: 90vw;
-    height: 7em;
-    padding: 2vw;
+    width: 1080px;
+    height: 175px;
+    padding: 24px;
     overflow-x: scroll;
     white-space: pre;
+    align-items: center;
+}
+
+.drop-targets {
+    justify-content: space-around;
+    align-items: center;
+}
+.box1 {
+    height: 50px;
+    width: 50px;
+    border: none;
+    margin-bottom: 80px;
+    /* align items in the box */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.box2 {
+    height: 50px;
+    width: 50px;
+    border: none;
+    /* align items in the box */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.box3 {
+    height: 50px;
+    width: 50px;
+    border: none;
+    margin-top: 80px;
+    /* align items in the box */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.box4 {
+    height: 50px;
+    width: 50px;
+    border: none;
+    margin-bottom: 67px;
+    /* align items in the box */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.box5 {
+    height: 50px;
+    width: 50px;
+    border: none;
+    /* align items in the box */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.box6 {
+    height: 50px;
+    width: 50px;
+    border: none;
+    margin-top: 67px;
+    /* align items in the box */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.box7 {
+    height: 50px;
+    width: 50px;
+    border: none;
+    margin-bottom: 55px;
+    /* align items in the box */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.box8 {
+    height: 50px;
+    width: 50px;
+    border: none;
+    /* align items in the box */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.box9 {
+    height: 50px;
+    width: 50px;
+    border: none;
+    margin-top: 55px;
+    /* align items in the box */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.container {
+    height: 500px;
+    width: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }

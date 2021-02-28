@@ -10,7 +10,7 @@ import * as reach from "@reach-sh/stdlib/ETH";
 // currency default
 const { standardUnit } = reach;
 // convert keyboard numeric keypad input layout to reach back end
-const handToInt = { "1": 6, "2": 7, "3": 8, "4": 3, "5": 4, "6": 5, "7": 0, "8": 1, "9": 2 };
+const handToInt = { box1: 6, box2: 7, box3: 8, box4: 3, box5: 4, box6: 5, box7: 0, box8: 1, box9: 2 };
 // set default variables, wager, account fund amount and standard unit
 const defaults = { defaultFundAmt: "10", defaultWager: "3", standardUnit };
 
@@ -27,6 +27,7 @@ class App extends React.Component {
         const acc = await reach.getDefaultAccount();
         const balAtomic = await reach.balanceOf(acc);
         const bal = reach.formatCurrency(balAtomic, 4);
+        this.setState({ view: "Start" });
         this.setState({ acc, bal });
         try {
             const faucet = await reach.getFaucet();
@@ -68,148 +69,24 @@ class Player extends React.Component {
         return reach.hasRandom.random();
     }
     // get the move the user wants to play
-    async getHand() {
-        // Fun([], UInt)
-        this.setState({ view: "makeCanvas" });
-        // create canvas context to draw granite background
-        var cvs_granite = document.getElementById("granite");
-        var cxt_granite = cvs_granite.getContext("2d");
-
-        // create canvas context to draw board
-        var cvs_board = document.getElementById("board");
-        var cxt_board = cvs_board.getContext("2d");
-
-        // create canvas context to draw X's and O's
-        var cvs_xo = document.getElementById("xsandos");
-        var cxt_xo = cvs_xo.getContext("2d");
-
-        // Draw granite and board upon appropriate layer
-        draw_granite();
-        draw_board();
-
-        // draw specific X's, numbered by numeric keypad
-        draw_x7();
-        draw_x4();
-        draw_x1();
-        draw_x8();
-        draw_x5();
-        draw_x2();
-        draw_x9();
-        draw_x6();
-        draw_x3();
-
-        // draw specific O's, numbered by numeric keypad
-        draw_o7();
-        draw_o4();
-        draw_o1();
-        draw_o8();
-        draw_o5();
-        draw_o2();
-        draw_o9();
-        draw_o6();
-        draw_o3();
-
-        // coordinate map x's and o's
-        // so left column
-        function draw_o7() {
-            draw_piece("o", 150, 95, 50, 50);
-        }
-        function draw_o4() {
-            draw_piece("o", 115, 170, 55, 55);
-        }
-        function draw_o1() {
-            draw_piece("o", 80, 250, 60, 60);
-        }
-        // o center column
-        function draw_o8() {
-            draw_piece("o", 240, 110, 52, 52);
-        }
-        function draw_o5() {
-            draw_piece("o", 220, 185, 57, 57);
-        }
-        function draw_o2() {
-            draw_piece("o", 192, 270, 62, 62);
-        }
-        // o right column
-        function draw_o9() {
-            draw_piece("o", 340, 130, 54, 54);
-        }
-        function draw_o6() {
-            draw_piece("o", 325, 205, 59, 59);
-        }
-        function draw_o3() {
-            draw_piece("o", 310, 290, 64, 64);
-        }
-        // x left column
-        function draw_x7() {
-            draw_piece("x", 150, 95, 50, 50);
-        }
-        function draw_x4() {
-            draw_piece("x", 115, 170, 55, 55);
-        }
-        function draw_x1() {
-            draw_piece("x", 80, 250, 60, 60);
-        }
-        // x center column
-        function draw_x8() {
-            draw_piece("x", 240, 110, 52, 52);
-        }
-        function draw_x5() {
-            draw_piece("x", 220, 185, 57, 57);
-        }
-        function draw_x2() {
-            draw_piece("x", 192, 270, 62, 62);
-        }
-        // x right column
-        function draw_x9() {
-            draw_piece("x", 340, 130, 54, 54);
-        }
-        function draw_x6() {
-            draw_piece("x", 325, 205, 59, 59);
-        }
-        function draw_x3() {
-            draw_piece("x", 310, 290, 64, 64);
-        }
-
-        // Draw X symbol at location of size
-        function draw_piece(piece, x, y, h, w) {
-            const urls = {
-                x: "https://imgur.com/eBsDAXr.png",
-                o: "https://imgur.com/h1xuIW1.png",
-            };
-            const base_image = new Image();
-            base_image.src = urls[piece];
-
-            base_image.onload = function () {
-                cxt_xo.drawImage(base_image, x, y, h, w);
-            };
-        }
-
-        // Draw granite background
-        function draw_granite() {
-            const base_image = new Image();
-            base_image.src = "https://imgur.com/8xyLP7U.png";
-            base_image.onload = function () {
-                cxt_granite.drawImage(base_image, 0, 0, 500, 500);
-            };
-        }
-
-        // Draw tic tac toe game board
-        function draw_board() {
-            const base_image = new Image();
-            base_image.src = "https://imgur.com/ppFPJWm.png";
-            base_image.onload = function () {
-                cxt_board.drawImage(base_image, 0, 0, 500, 500);
-            };
-        }
-
+    async getHand(x) {
         // Present the buttons to the user so that they can actually select their move
         const hand = await new Promise((resolveHandP) => {
-            this.setState({ view: "GetHand", playable: true, resolveHandP });
+            this.setState({ view: "GetHand", resolveHandP });
         });
+
+        document.getElementById(hand).src = {
+            x: "https://imgur.com/eBsDAXr.png",
+            o: "https://imgur.com/h1xuIW1.png",
+        }[x ? "x" : "o"];
 
         // Display that a move as been accepted
         this.setState({ view: "GetHandb", playable: true });
+
+        document.getElementById(hand).src = {
+            x: "https://imgur.com/eBsDAXr.png",
+            o: "https://imgur.com/h1xuIW1.png",
+        }[x ? "x" : "o"];
 
         // return the move
         return handToInt[hand];
@@ -226,8 +103,8 @@ class Player extends React.Component {
     }
 
     // ???
-    playHand(hand) {
-        this.state.resolveHandP(hand);
+    setImg(box_id) {
+        this.state.resolveHandP(box_id);
     }
 }
 
