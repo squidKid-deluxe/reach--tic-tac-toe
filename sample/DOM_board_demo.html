@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            font-size: 16px;
+            background-color: #000;
+            overflow: hidden;
+            width:1vh;
+            height:1vh;
+
+        }
+
+        h1 {
+            color: #323330;
+        }
+
+        .image-container {
+            display: flex;
+            flex-direction: column;
+          justify-content: center;
+          align-items: center;
+        }
+
+        .container {
+            height: 500px;
+            width: 500px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+
+        }
+        .drop-targets {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            align-items: center;
+
+
+        }
+        .box1 {
+            height: 50px;
+            width: 50px;
+            border:none;
+            margin-bottom: 80px;
+            /* align items in the box */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+
+        }
+        .box2 {
+            height: 50px;
+            width: 50px;
+            border:none;
+            /* align items in the box */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+
+        }
+        .box3 {
+            height: 50px;
+            width: 50px;
+            border:none;
+            margin-top: 80px;
+            /* align items in the box */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+
+        }
+        .box4 {
+            height: 50px;
+            width: 50px;
+            border:none;
+            margin-bottom: 67px;
+            /* align items in the box */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+
+        }
+        .box5 {
+            height: 50px;
+            width: 50px;
+            border:none;
+            /* align items in the box */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+
+        }
+        .box6 {
+            height: 50px;
+            width: 50px;
+            border:none;
+            margin-top: 67px;
+            /* align items in the box */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+
+        }
+        .box7 {
+            height: 50px;
+            width: 50px;
+            border:none;
+            margin-bottom: 55px;
+            /* align items in the box */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+
+        }
+        .box8 {
+            height: 50px;
+            width: 50px;
+            border:none;
+            /* align items in the box */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+
+        }
+        .box9 {
+            height: 50px;
+            width: 50px;
+            border:none;
+            margin-top: 55px;
+            /* align items in the box */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+
+        }
+
+
+        
+        .nobox1 {
+            height: 100px;
+            width: 850px;
+            margin: 10px;
+        }
+
+        .nobox2 {
+            height: 250px;
+            width: 850px;
+            margin: 10px;
+        }
+
+        .drag-over {
+            border: dashed 3px red;
+        }
+
+        .item1 {
+            display: flex;
+            justify-content: center;
+            height: 50px;
+            width: 50px;
+            /*background-color: #bd959f;*/
+
+        }
+
+        .item2 {
+            display: flex;
+            justify-content: center;
+            height: 50px;
+            width: 50px;
+            /*background-color: #759c8a;*/
+
+        }
+
+
+        .hide {
+            display: none;
+        }
+
+
+    </style>
+
+<script>
+    /* draggable element */
+    const item1 = document.querySelector('.item1');
+
+    item1.addEventListener('dragstart', dragStart);
+
+    const item2 = document.querySelector('.item2');
+
+    item2.addEventListener('dragstart', dragStart);
+
+    function dragStart(e) {
+        e.dataTransfer.setData('text/plain', e.target.id);
+        setTimeout(() => {
+            e.target.classList.add('hide');
+        }, 0);
+    }
+
+
+    /* drop targets */
+    const boxes1 = document.querySelectorAll('.box1');
+
+    boxes1.forEach(box => {
+        box.addEventListener('dragenter', dragEnter)
+        box.addEventListener('dragover', dragOver);
+        box.addEventListener('dragleave', dragLeave);
+        box.addEventListener('drop', drop);
+    });
+
+    const boxes2 = document.querySelectorAll('.box2');
+
+    boxes2.forEach(box => {
+        box.addEventListener('dragenter', dragEnter)
+        box.addEventListener('dragover', dragOver);
+        box.addEventListener('dragleave', dragLeave);
+        box.addEventListener('drop', drop);
+    });
+
+    const boxes3 = document.querySelectorAll('.box3');
+
+    boxes3.forEach(box => {
+        box.addEventListener('dragenter', dragEnter)
+        box.addEventListener('dragover', dragOver);
+        box.addEventListener('dragleave', dragLeave);
+        box.addEventListener('drop', drop);
+    });
+
+
+    function dragEnter(e) {
+        e.preventDefault();
+        e.target.classList.add('drag-over');
+    }
+
+    function dragOver(e) {
+        e.preventDefault();
+        e.target.classList.add('drag-over');
+    }
+
+    function dragLeave(e) {
+        e.target.classList.remove('drag-over');
+    }
+
+    function drop(e) {
+        e.target.classList.remove('drag-over');
+
+        // get the draggable element
+        const id = e.dataTransfer.getData('text/plain');
+        const draggable = document.getElementById(id);
+
+        // add it to the drop target
+        e.target.appendChild(draggable);
+
+        // display the draggable element
+        draggable.classList.remove('hide');
+    }
+
+    function setImg(box_id) {
+        document.getElementById(box_id).src = ["https://imgur.com/eBsDAXr.png", "https://imgur.com/h1xuIW1.png"][Math.floor(Math.random() * 2)];
+    }
+</script>
+
+</head>
+
+
+<body>
+    <div class="container">
+        <center><img src="https://imgur.com/CsxXjde.png" width="900px" height="720px" style="z-index:0; position:absolute; top:0px; left:50%; margin-left:-450px"></img></center>
+        <center><img src="https://imgur.com/Hla2Ybx.png" width="900px" height="720px" style="z-index:1; position:absolute; top:0px; left:50%; margin-left:-450px"></img></center>
+        <center><div style="z-index:2; position:absolute; top:145px; left:50%;  margin-left:-500px">
+           
+            <div class="drop-targets">
+                <pre>                                     </pre>
+                <img class="box7" onclick="setImg('box7')" id="box7"></img>
+                <pre>             </pre><img class="box8" onclick="setImg('box8')" id="box8"></img>
+                <pre>             </pre><img class="box9" onclick="setImg('box9')" id="box9"></img>
+                <pre></pre>
+            </div>
+            <br />
+            <div class="drop-targets">
+                <pre>                            </pre>
+                <img class="box4" onclick="setImg('box4')" id="box4"></img>
+                <pre>         </pre><img class="box5" onclick="setImg('box5')" id="box5"></img>
+                <pre>         </pre><img class="box6" onclick="setImg('box6')" id="box6"></img>
+                <pre></pre>
+            </div>
+            <br />
+            <div class="drop-targets">
+                <pre>                 </pre>
+                <img class="box1" onclick="setImg('box1')" id="box1"></img>
+                <pre>      </pre><img class="box2" onclick="setImg('box2')" id="box2"></img>
+                <pre>      </pre><img class="box3" onclick="setImg('box3')" id="box3"></img>
+                <pre></pre>
+            </div>
+            
+        </div></center>
+        
+    </div>
+</body>
+
+</html>
