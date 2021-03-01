@@ -305,13 +305,6 @@ function render(st) {
     } else {
         const part = isAlice ? TTT.A : TTT.B;
         await Promise.all([part(ctc, interact(isAlice ? 'Alice' : 'Bob'))]);
-        // await interact(isAlice ? 'Alice' : 'Bob');
-
-        
-
-        // const after = fmt(await stdlib.balanceOf(acc));
-        // console.log(`Your balance went from ${balance} to ${after}.`);
-
         done();
     }
 
