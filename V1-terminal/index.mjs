@@ -21,7 +21,7 @@
 
 import * as stdlib_loader from "@reach-sh/stdlib/loader.mjs";
 import * as TTT from "./build/index.main.mjs";
-import { ask } from "@reach-sh/stdlib/ask.mjs";
+import { ask, yesno, done } from '@reach-sh/stdlib/ask.mjs';
 
 // Function to render the board into ASCII art
 function render(st) {
@@ -75,56 +75,16 @@ function render(st) {
         }
         return choice;
     });
-    
-    if (simulate) {
-        // Print that we are running a random game
-        console.log(`\nSimulating a random game\n`);
-    }else{
-        console.log("\n\n\nUSE YOUR NUMERIC KEYPAD TO PLAY\n\n")
-        console.log(`\t╔═══╦═══╦═══╗`)
-        console.log(`\t║ 7 ║ 8 ║ 9 ║`)
-        console.log(`\t╠═══╬═══╬═══╣`)
-        console.log(`\t║ 4 ║ 5 ║ 6 ║`)
-        console.log(`\t╠═══╬═══╬═══╣`)
-        console.log(`\t║ 1 ║ 2 ║ 3 ║`)
-        console.log(`\t╚═══╩═══╩═══╝`)
 
-    }
-    // Load the stdlib
-    const stdlib = await stdlib_loader.loadStdlib();
-    // Format and assign the starting balance
-    const startingBalance = stdlib.parseCurrency(1000);
-    // Format and assign the wager
-    const wagerAmount = stdlib.parseCurrency(5);
-    // Make a function to display amounts:
-    const dispAmt = (x) => `${stdlib.formatCurrency(x)} ${stdlib.standardUnit}`;
-    // Print that we are making the accounts
-    console.log(`\nMaking accounts\n`);
-    // Actually make the accounts
-    const Alice = await stdlib.newTestAccount(startingBalance);
-    const Bob = await stdlib.newTestAccount(startingBalance);
-    // Deploy from Alice and attach with Bob
-    console.log(`\nDeploying and attaching\n`);
-    const ctcAlice = Alice.deploy(TTT);
-    const ctcBob = Bob.attach(TTT, ctcAlice.getInfo());
-    // Make a function to return the balance of either Alice or Bob
-    const getBalance = async (who) => (await stdlib.balanceOf(who)) / 10 ** 18;
-    // Get starting balances
-    const beforeAlice = await getBalance(Alice);
-    const beforeBob = await getBalance(Bob);
     // Create the function that the reach program interacts with
-    const interactWith = (name) => ({
+    const interact = (name) => ({
         // Allow the reach program to use random
         ...stdlib.hasRandom,
 
         // Return the wager to the reach program
         getWager: () => {
-            console.log(`${name} publishes wager of ${dispAmt(wagerAmount)}`);
-            return wagerAmount;
-        },
-        // Allow the reach program to print that someone has accepted the wager
-        acceptWager: (givenWagerAmount) => {
-            console.log(`${name} accepts wager of ${dispAmt(givenWagerAmount)}`);
+            console.log(`${name} publishes wager of ${dispAmt(wager)}`);
+            return wager;
         },
         // Give a move to the reach program
         getMove: async (board, fee_mt) => {
@@ -188,6 +148,10 @@ function render(st) {
             //console.log(`Alice balance:  ${AfterAlice}`);
             //console.log(`Bob balance:    ${AfterBob}`);
         },
+        informTimeout : () => {
+            console.log(`There was a timeout.`);
+            process.exit(1);
+        },
         print_data: (data0, data1, data2, data3, data4, data5, data6, data7, data8, data9, data10, data11, data12, data13, data14, data15, data16) => {
             console.log(
                 `${name} printed: ` +
@@ -212,16 +176,141 @@ function render(st) {
         },
     });
 
-    // Start the interaction processes
-    await Promise.all([TTT.A(ctcAlice, interactWith("Alice")), TTT.B(ctcBob, interactWith("Bob"))]);
 
-    const afterAlice = await getBalance(Alice);
-    const afterBob = await getBalance(Bob);
+    // Load the stdlib
+    const stdlib = await stdlib_loader.loadStdlib();
 
-    console.log(`Alice went from ${beforeAlice} to ${afterAlice}.`);
-    console.log(`Bob went from ${beforeBob} to ${afterBob}.`);
+    let isAlice = null;
+    let ctc = null;
+    
+    if (simulate) {
+        // Print that we are running a random game
+        console.log(`\nSimulating a random game\n`);
+        // Format and assign the starting balance
+        const startingBalance = stdlib.parseCurrency(1000);
+        // Format and assign the wager
+        const wager = stdlib.parseCurrency(5);
+        // Make a function to display amounts:
+        const dispAmt = (x) => `${stdlib.formatCurrency(x)} ${stdlib.standardUnit}`;
+        // Print that we are making the accounts
+        console.log(`\nMaking accounts\n`);
+        // Actually make the accounts
+        const Alice = await stdlib.newTestAccount(startingBalance);
+        const Bob = await stdlib.newTestAccount(startingBalance);
+        // Deploy from Alice and attach with Bob
+        console.log(`\nDeploying and attaching\n`);
+        const ctcAlice = Alice.deploy(TTT);
+        const ctcBob = Bob.attach(TTT, ctcAlice.getInfo());
+        // Make a function to return the balance of either Alice or Bob
+        const getBalance = async (who) => (await stdlib.balanceOf(who)) / 10 ** 18;
+        // Get starting balances
+        const beforeAlice = await getBalance(Alice);
+        const beforeBob = await getBalance(Bob);
+    } else {
+        ////////////////////////////////////////////////////
+        // Creates the accounts, contract, and sets wager //
+        ////////////////////////////////////////////////////
+        isAlice = await ask(
+            `Are you Alice?`,
+            yesno
+        );
+        const who = isAlice ? 'ALICE' : 'BOB';
+        console.log(`PLAYING`)
+        console.log(`\n\n`)
+        console.log(`     ╔═════════════════╗`)
+        console.log(`     ║   PAY TO PLAY   ║`)
+        console.log(`     ║  ╔═══╦═══╦═══╗  ║`)
+        console.log(`     ║  ║ T ║ I ║ C ║  ║`)
+        console.log(`     ║  ╠═══╬═══╬═══╣  ║`)
+        console.log(`     ║  ║ T ║ A ║ C ║  ║`)
+        console.log(`     ║  ╠═══╬═══╬═══╣  ║`)
+        console.log(`     ║  ║ T ║ O ║ E ║  ║`)
+        console.log(`     ║  ╚═══╩═══╩═══╝  ║`)
+        console.log(`     ╚═════════════════╝`)
+        console.log(`AS ${who}`)
+        console.log("\n\n\nUSE YOUR NUMERIC KEYPAD TO PLAY\n\n")
+        console.log(`\t╔═══╦═══╦═══╗`)
+        console.log(`\t║ 7 ║ 8 ║ 9 ║`)
+        console.log(`\t╠═══╬═══╬═══╣`)
+        console.log(`\t║ 4 ║ 5 ║ 6 ║`)
+        console.log(`\t╠═══╬═══╬═══╣`)
+        console.log(`\t║ 1 ║ 2 ║ 3 ║`)
+        console.log(`\t╚═══╩═══╩═══╝`)
 
-    // Print the 'Done!' message and exit.
-    console.log(`Done!`);
-    process.exit(0);
+        let acc = null;
+        const createAcc = await ask(
+            `Would you like to create an account? (only possible on devnet)`,
+            yesno
+        );
+        if (createAcc) {
+            acc = await stdlib.newTestAccount(stdlib.parseCurrency(1000));
+        } else {
+            const secret = await ask(
+                `What is your account secret?`,
+                (x => x)
+            );
+            acc = await stdlib.newAccountFromSecret(secret);
+        }
+        const deployCtc = await ask(
+            `Do you want to deploy the contract? (y/n)`,
+            yesno
+        );
+        if (deployCtc) {
+            ctc = acc.deploy(TTT);
+            const info = await ctc.getInfo();
+            console.log(`The contract is deployed as = ${JSON.stringify(info)}`);
+        } else {
+            const info = await ask(
+                `Please paste the contract information:`,
+                JSON.parse
+            );
+            ctc = acc.attach(TTT, info);
+        }
+        const fmt = (x) => stdlib.formatCurrency(x, 4);
+        const getBalance = async () => fmt(await stdlib.balanceOf(acc));
+        const before = await getBalance();
+        console.log(`Your balance is ${before}`);
+
+        if (isAlice) {
+            const amt = await ask(
+                `How much do you want to wager?`,
+                stdlib.parseCurrency
+            );
+            interact.wager = amt;
+        } else {
+            interact.acceptWager = async (amt) => {
+                const accepted = await ask(
+                    `Do you accept the wager of ${fmt(amt)}?`,
+                    yesno
+                );
+                if (accepted) {
+                    return;
+                } else {
+                    process.exit(0);
+                }
+            };
+        }
+    }
+    
+
+    if (simulate) {
+        // Start the interaction processes
+        await Promise.all([TTT.A(ctcAlice, interact("Alice")), TTT.B(ctcBob, interact("Bob"))]);
+        console.log(`Alice went from ${beforeAlice} to ${afterAlice}.`);
+        console.log(`Bob went from ${beforeBob} to ${afterBob}.`);
+        // Print the 'Done!' message and exit.
+        console.log(`Done!`);
+        process.exit(0);
+    } else {
+        const part = isAlice ? TTT.A : TTT.B;
+        await part(ctc, interact);
+
+        
+
+        const after = await getBalance();
+        console.log(`Your balance went from ${balance} to ${after}.`);
+
+        done();
+    }
+
 })();

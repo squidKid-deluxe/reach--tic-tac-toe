@@ -140,7 +140,11 @@ const Bob = {
     acceptWager: Fun([UInt], Null)
 };
 
+const DEADLINE = 240;
+
+////////////////////////////////////////////////////
 /// Define the main exports of the reach program ///
+////////////////////////////////////////////////////
 export const main = Reach.App(
     {},
     // Participants
@@ -149,6 +153,12 @@ export const main = Reach.App(
         ["B", Bob],
     ],
     (A, B) => {
+
+        const informTimeout = () => {
+            each([A, B], () => {
+                interact.informTimeout();
+            });
+        };
         // Initialize all interactions and pay the wager for Alice
         A.only(() => {
             const wagerAmount = declassify(interact.getWager());
@@ -163,7 +173,7 @@ export const main = Reach.App(
             interact.acceptWager(wagerAmount);
             const coinFlipB = declassify(interact.random());
         });
-        B.publish(coinFlipB).pay(wagerAmount);
+        B.publish(coinFlipB).pay(wagerAmount).timeout(DEADLINE, () => closeTo(A, informTimeout));
         commit();
 
         // Randomly calculate who goes first
