@@ -125,7 +125,8 @@ const Player = {
     ...hasRandom,
     getMove: Fun([State, Fees], UInt),
     endsWith: Fun([State], Null),
-    print_data: Fun([Fees, Board, Board, Board, Board, UInt, Board, UInt, UInt, UInt, UInt, UInt, Bool, Bool, Bool, Bool, Bool], Null)
+    print_data: Fun([Fees, Board, Board, Board, Board, UInt, Board, UInt, UInt, UInt, UInt, UInt, Bool, Bool, Bool, Bool, Bool], Null),
+    informTimeout: Fun([], Null)
 };
 
 // Only Alice can access these JavaScript functions
@@ -237,7 +238,7 @@ export const main = Reach.App(
             : [o_wager+x_unspent, x_wager+o_unspent]
         );
         // Use JS to print a statement by Alice
-        A.only(() => {
+        each([A, B], () => {
             interact.print_data(
                 fee_matrix,
                 state.xs,

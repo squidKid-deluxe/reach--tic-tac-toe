@@ -77,13 +77,13 @@ function render(st) {
     });
 
     // Create the function that the reach program interacts with
-    const interact = (name) => ({
+    var interact = (name) => ({
         // Allow the reach program to use random
         ...stdlib.hasRandom,
 
         // Return the wager to the reach program
         getWager: () => {
-            console.log(`${name} publishes wager of ${dispAmt(wager)}`);
+            console.log(`${name} publishes wager of ${stdlib.formatCurrency(wager)} ${stdlib.standardUnit}`);
             return wager;
         },
         // Give a move to the reach program
@@ -127,7 +127,7 @@ function render(st) {
                 // If the place is not already occupied..
                 if (xs[choice] + os[choice] == 0) {
                     // Calculate the theoretical fee for that place
-                    fee = (wagerAmount / 16) * fee_mt[choice];
+                    fee = (wager / 16) * fee_mt[choice];
                     console.log(`${name} chooses move ${choice} from board Above.`);
                     console.log(`fee: ${fee / 10 ** 18} * 10**18`);
                     // Return the place chosen to move to.
@@ -174,6 +174,17 @@ function render(st) {
                     `\ntie        ${data16}`
             );
         },
+        acceptWager : async (amt) => {
+                const accepted = await ask(
+                    `Do you accept the wager of ${stdlib.formatCurrency(amt, 4)}?`,
+                    yesno
+                );
+                if (accepted) {
+                    return;
+                } else {
+                    process.exit(0);
+                }
+            }
     });
 
 
@@ -182,14 +193,18 @@ function render(st) {
 
     let isAlice = null;
     let ctc = null;
-    
+    let ctcAlice = null;
+    let ctcBob = null;
+    let acc = null;
+    var wager = null;
+
     if (simulate) {
         // Print that we are running a random game
         console.log(`\nSimulating a random game\n`);
         // Format and assign the starting balance
         const startingBalance = stdlib.parseCurrency(1000);
         // Format and assign the wager
-        const wager = stdlib.parseCurrency(5);
+        wager = stdlib.parseCurrency(5);
         // Make a function to display amounts:
         const dispAmt = (x) => `${stdlib.formatCurrency(x)} ${stdlib.standardUnit}`;
         // Print that we are making the accounts
@@ -215,20 +230,8 @@ function render(st) {
             yesno
         );
         const who = isAlice ? 'ALICE' : 'BOB';
-        console.log(`PLAYING`)
-        console.log(`\n\n`)
-        console.log(`     ╔═════════════════╗`)
-        console.log(`     ║   PAY TO PLAY   ║`)
-        console.log(`     ║  ╔═══╦═══╦═══╗  ║`)
-        console.log(`     ║  ║ T ║ I ║ C ║  ║`)
-        console.log(`     ║  ╠═══╬═══╬═══╣  ║`)
-        console.log(`     ║  ║ T ║ A ║ C ║  ║`)
-        console.log(`     ║  ╠═══╬═══╬═══╣  ║`)
-        console.log(`     ║  ║ T ║ O ║ E ║  ║`)
-        console.log(`     ║  ╚═══╩═══╩═══╝  ║`)
-        console.log(`     ╚═════════════════╝`)
-        console.log(`AS ${who}`)
-        console.log("\n\n\nUSE YOUR NUMERIC KEYPAD TO PLAY\n\n")
+        console.log(`PLAYING PAY TO PLAY TIC-TAC-TOE AS ${who}`)
+        console.log("\n\nUSE YOUR NUMERIC KEYPAD TO PLAY:\n")
         console.log(`\t╔═══╦═══╦═══╗`)
         console.log(`\t║ 7 ║ 8 ║ 9 ║`)
         console.log(`\t╠═══╬═══╬═══╣`)
@@ -237,7 +240,7 @@ function render(st) {
         console.log(`\t║ 1 ║ 2 ║ 3 ║`)
         console.log(`\t╚═══╩═══╩═══╝`)
 
-        let acc = null;
+        
         const createAcc = await ask(
             `Would you like to create an account? (only possible on devnet)`,
             yesno
@@ -251,11 +254,13 @@ function render(st) {
             );
             acc = await stdlib.newAccountFromSecret(secret);
         }
-        const deployCtc = await ask(
-            `Do you want to deploy the contract? (y/n)`,
-            yesno
-        );
+        const deployCtc = isAlice;
         if (deployCtc) {
+            const amt = await ask(
+                `How much do you want to wager?`,
+                stdlib.parseCurrency
+            );
+            wager = amt;
             ctc = acc.deploy(TTT);
             const info = await ctc.getInfo();
             console.log(`The contract is deployed as = ${JSON.stringify(info)}`);
@@ -266,18 +271,9 @@ function render(st) {
             );
             ctc = acc.attach(TTT, info);
         }
-        const fmt = (x) => stdlib.formatCurrency(x, 4);
-        const getBalance = async () => fmt(await stdlib.balanceOf(acc));
-        const before = await getBalance();
-        console.log(`Your balance is ${before}`);
 
-        if (isAlice) {
-            const amt = await ask(
-                `How much do you want to wager?`,
-                stdlib.parseCurrency
-            );
-            interact.wager = amt;
-        } else {
+
+        if (!isAlice) {
             interact.acceptWager = async (amt) => {
                 const accepted = await ask(
                     `Do you accept the wager of ${fmt(amt)}?`,
@@ -290,6 +286,11 @@ function render(st) {
                 }
             };
         }
+
+        const fmt = (x) => stdlib.formatCurrency(x, 4);
+        const getBalance = async () => fmt(await stdlib.balanceOf(acc));
+        const before = await getBalance();
+        console.log(`Your balance is ${before}`);
     }
     
 
@@ -303,12 +304,13 @@ function render(st) {
         process.exit(0);
     } else {
         const part = isAlice ? TTT.A : TTT.B;
-        await part(ctc, interact);
+        await Promise.all([part(ctc, interact(isAlice ? 'Alice' : 'Bob'))]);
+        // await interact(isAlice ? 'Alice' : 'Bob');
 
         
 
-        const after = await getBalance();
-        console.log(`Your balance went from ${balance} to ${after}.`);
+        // const after = fmt(await stdlib.balanceOf(acc));
+        // console.log(`Your balance went from ${balance} to ${after}.`);
 
         done();
     }
