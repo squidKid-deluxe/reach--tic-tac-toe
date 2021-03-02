@@ -1,6 +1,8 @@
 body {
     margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
+        "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
+        "Helvetica Neue", sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     background-image: url("https://imgur.com/aLfgujc.png");
@@ -9,9 +11,12 @@ body {
 }
 
 code {
-    font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
+    font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+        monospace;
     color: #c1a57c;
     background-color: black;
+    align-items: center;
+    justify-content: center;
 }
 .App {
     text-align: center;
@@ -33,7 +38,7 @@ code {
 
 input[type="number"] {
     font-size: 20px;
-    width: 40px;
+    width: 100px;
     color: #c1a57c;
     background-color: black;
     border-color: #c1a57c;
@@ -67,7 +72,7 @@ button {
     margin-right: 15px;
 }
 
-textarea {
+/*textarea {
     font-size: 20px;
     color: #d1b58c;
     background-color: black;
@@ -75,19 +80,42 @@ textarea {
     border-image-width: 5;
     border-image-slice: 183;
     border-image-repeat: round;
+    width:1080px;
+    overflow: hidden;
+    resize: none;
+}*/
+
+.ContractInfoA {
+    font-size: 20px;
+    color: #d1b58c;
+    background-color: black;
+    border-image-source: url("https://imgur.com/Oz4JZlv.png");
+    border-image-width: 5;
+    border-image-slice: 183;
+    border-image-repeat: round;
+    width: 1080px;
+    height: 175px;
+    padding: 24px;
     overflow: hidden;
     resize: none;
 }
 
-.ContractInfo {
+.ContractInfoD {
     font-size: 20px;
-    text-align: left;
-    width: 1080px;
+    color: #d1b58c;
+    /*background-color: red;*/
+    border-image-source: url("https://imgur.com/Oz4JZlv.png");
+    border-image-width: 5;
+    border-image-slice: 183;
+    border-image-repeat: round;
+    overflow: hidden;
+    resize: none;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    width: 100wh;
     height: 175px;
     padding: 24px;
-    overflow-x: scroll;
-    white-space: pre;
-    align-items: center;
 }
 
 .drop-targets {

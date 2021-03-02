@@ -82,7 +82,7 @@ const is_valid = (st, move) => occupied_cell(st, move) == 0;
 
 // Get a move that it is on the board and not occupied
 function getValidMove(st, interact, who) {
-    const move = interact.getHand(who);
+    const move = interact.getHand(who, st.xs, st.os);
     assume(is_legal(move));
     assume(is_valid(st, move));
     //assume(occupied_cell(st, move) == 0);
@@ -122,7 +122,7 @@ const DELAY = 20; // in blocks
 const Player = {
     ...hasRandom,
     // Start: Fun([], Null),
-    getHand: Fun([Bool], UInt),
+    getHand: Fun([Bool, Board, Board], UInt),
     endsWith: Fun([Bool], Null),
     informTimeout: Fun([], Null),
 };
@@ -146,8 +146,8 @@ export const main = Reach.App(
     {},
     // Participants
     [
-        ["A", Alice],
-        ["B", Bob],
+        Participant("A", Alice),
+        Participant("B", Bob),
     ],
     (A, B) => {
         // each([A, B], () => {
