@@ -214,8 +214,8 @@ function render(st) {
         const Bob = await stdlib.newTestAccount(startingBalance);
         // Deploy from Alice and attach with Bob
         console.log(`\nDeploying and attaching\n`);
-        const ctcAlice = Alice.deploy(TTT);
-        const ctcBob = Bob.attach(TTT, ctcAlice.getInfo());
+        ctcAlice = Alice.deploy(TTT);
+        ctcBob = Bob.attach(TTT, ctcAlice.getInfo());
         // Make a function to return the balance of either Alice or Bob
         const getBalance = async (who) => (await stdlib.balanceOf(who)) / 10 ** 18;
         // Get starting balances
@@ -297,14 +297,21 @@ function render(st) {
     if (simulate) {
         // Start the interaction processes
         await Promise.all([TTT.A(ctcAlice, interact("Alice")), TTT.B(ctcBob, interact("Bob"))]);
-        console.log(`Alice went from ${beforeAlice} to ${afterAlice}.`);
-        console.log(`Bob went from ${beforeBob} to ${afterBob}.`);
+        // console.log(`Alice went from ${beforeAlice} to ${afterAlice}.`);
+        // console.log(`Bob went from ${beforeBob} to ${afterBob}.`);
         // Print the 'Done!' message and exit.
         console.log(`Done!`);
         process.exit(0);
     } else {
         const part = isAlice ? TTT.A : TTT.B;
         await Promise.all([part(ctc, interact(isAlice ? 'Alice' : 'Bob'))]);
+        // await interact(isAlice ? 'Alice' : 'Bob');
+
+        
+
+        // const after = fmt(await stdlib.balanceOf(acc));
+        // console.log(`Your balance went from ${balance} to ${after}.`);
+
         done();
     }
 
