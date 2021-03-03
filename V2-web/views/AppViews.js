@@ -41,18 +41,28 @@ exports.Wrapper = class extends React.Component {
 
 exports.Start = class extends React.Component {
     render() {
+        const {parent} = this.props;
         return (
+            <div>
+            <center>
             <div id="bullutin">
-                <p style={{fontSize: 50}}>
+                <p style={{fontSize: 30}}>
                     Rules of the game:
                     <br />
                     1) if you decide to remove yourself from the game before it
                     ends, YOU WILL LOSE ALL YOUR FUNDS!!!
                     <br />
                     2) Wager is collected at the start of the game, but fees for
-                    particular spots are collected throughout the game
+                    particular spots are collected throughout the game.
+                    <br />
+                    3) Fees for each move are 3/16s of your wager for corners, 2/16s of your wager for sides, and 4/16s of your wager for the middle.
+                    <br />
+                    4) Regardless of your move fees, you are responsible for your entire wager if your opponent gets a double win.
                 </p>
-                <button onClick="">I Agree</button>
+                </div>
+            </center>
+                <button onClick={() => parent.finalizeMount()}>I Agree</button>
+
             </div>
         );
     }
