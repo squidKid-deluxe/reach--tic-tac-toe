@@ -118,105 +118,133 @@ button {
     padding: 24px;
 }
 
+.image-container {
+            display: flex;
+            flex-direction: column;
+          justify-content: center;
+          align-items: center;
+        }
+
+.container {
+    height: 500px;
+    width: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+
+}
 .drop-targets {
+    display: flex;
+    flex-direction: row;
     justify-content: space-around;
     align-items: center;
 }
 .box1 {
     height: 50px;
     width: 50px;
-    border: none;
-    margin-bottom: 80px;
+    border:none;
+    margin-bottom: 100px;
     /* align items in the box */
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+
 }
 .box2 {
     height: 50px;
     width: 50px;
-    border: none;
+    border:none;
     /* align items in the box */
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+
 }
 .box3 {
     height: 50px;
     width: 50px;
-    border: none;
-    margin-top: 80px;
+    border:none;
+    margin-top: 100px;
     /* align items in the box */
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+
 }
 .box4 {
     height: 50px;
     width: 50px;
-    border: none;
+    border:none;
     margin-bottom: 67px;
     /* align items in the box */
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+
 }
 .box5 {
     height: 50px;
     width: 50px;
-    border: none;
+    border:none;
     /* align items in the box */
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+
 }
 .box6 {
     height: 50px;
     width: 50px;
-    border: none;
+    border:none;
     margin-top: 67px;
     /* align items in the box */
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+
 }
 .box7 {
     height: 50px;
     width: 50px;
-    border: none;
+    border:none;
     margin-bottom: 55px;
     /* align items in the box */
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+
 }
 .box8 {
     height: 50px;
     width: 50px;
-    border: none;
+    border:none;
     /* align items in the box */
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+
 }
 .box9 {
     height: 50px;
     width: 50px;
-    border: none;
+    border:none;
     margin-top: 55px;
     /* align items in the box */
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+
 }
 
 .container {

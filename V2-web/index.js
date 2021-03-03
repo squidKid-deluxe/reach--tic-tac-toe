@@ -112,13 +112,13 @@ class Player extends React.Component {
         }[x ? "x" : "o"];
 
         for (var i = 0; i < xs.length; i++) {
-            if (xs[i+1] === 1) {
+            if (xs[i] === 1) {
                 document.getElementById(intToHand[i+1]).src = "https://imgur.com/eBsDAXr.png";
             }
         }
 
         for (i = 0; i < xs.length; i++) {
-            if (os[i+1] === 1) {
+            if (os[i] === 1) {
                 document.getElementById(intToHand[i+1]).src = "https://imgur.com/h1xuIW1.png";
             }
         }
@@ -137,13 +137,13 @@ class Player extends React.Component {
         }[x ? "x" : "o"];
 
         for (i = 0; i < xs.length; i++) {
-            if (xs[i+1] === 1) {
+            if (xs[i] === 1) {
                 document.getElementById(intToHand[i+1]).src = "https://imgur.com/eBsDAXr.png";
             }
         }
 
         for (i = 0; i < xs.length; i++) {
-            if (os[i+1] === 1) {
+            if (os[i] === 1) {
                 document.getElementById(intToHand[i+1]).src = "https://imgur.com/h1xuIW1.png";
             }
         }
@@ -162,7 +162,7 @@ class Player extends React.Component {
         this.setState({view: "Timeout"});
     }
 
-    // ???
+    // returns hand to Reach
     setImg(box_id) {
         this.state.resolveHandP(box_id);
     }
