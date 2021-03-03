@@ -60,8 +60,15 @@ button {
 }
 
 #bullutin {
-    background-image: url("https://imgur.com/pvcgja6.png");
-    background-repeat: round;
+    background-image: url("https://imgur.com/yvtuBXA.png");
+    background-repeat: no-repeat;
+    background-size:cover;
+    height:379px;
+    width:1160px;
+    padding:50px;
+    justify-content: center;
+    align-items: center;
+
 }
 
 #numpad {
