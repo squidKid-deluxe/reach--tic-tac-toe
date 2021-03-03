@@ -7,19 +7,16 @@ const exports = {};
 // It does not have its own Wrapper view. //
 ////////////////////////////////////////////
 
-
-
-
 /////////////////////////////////////
 // Page for winning/losing message //
 /////////////////////////////////////
 
 exports.Finale = class extends React.Component {
     render() {
-        const { won } = this.props;
+        const {won} = this.props;
         return (
             <div>
-              <h1>{!won ? "YOU WIN!" : "YOU LOSE!"}</h1>
+                <h1>{!won ? "YOU WIN!" : "YOU LOSE!"}</h1>
             </div>
         );
     }
@@ -29,41 +26,109 @@ exports.Finale = class extends React.Component {
 // Get hand function for waiting fo the other player. //
 ////////////////////////////////////////////////////////
 
+/* eslint-disable */
 exports.GetHandb = class extends React.Component {
     render() {
-        const {parent} = this.props;
+        const {parent, xs, os} = this.props;
         return (
-<div class="container">
-Waiting for the other player...
-        <center><img src="https://imgur.com/CsxXjde.png" width="900px" height="720px" style={{zIndex:0, position:"absolute", top:"0px", left:"50%", marginLeft:"-450px"}}></img></center>
-        <center><img src="https://imgur.com/Hla2Ybx.png" width="900px" height="720px" style={{zIndex:1, position:"absolute", top:"0px", left:"50%", marginLeft:"-450px"}}></img></center>
-        <center><div style={{zIndex:2, position:"absolute", top:"145px", left:"50%",  marginLeft:"-800px"}}>
-           
-            <div class="drop-targets">
-                <pre>                                     </pre>
-                <img class="box7" id="box7"></img>
-                <pre>             </pre><img class="box8" id="box8"></img>
-                <pre>             </pre><img class="box9" id="box9"></img>
-                <pre></pre>
+            <div className="container">
+                <p id="xs">ummm</p>
+                <p id="os"></p>
+                <center>
+                    <img
+                        src="https://imgur.com/CsxXjde.png"
+                        width="1100px"
+                        height="880px"
+                        style={{
+                            zIndex: 0,
+                            position: "absolute",
+                            top: "400px",
+                            left: "50%",
+                            marginLeft: "-550px",
+                        }}
+                    ></img>
+                </center>
+                <center>
+                    <img
+                        src="https://imgur.com/Hla2Ybx.png"
+                        width="1100px"
+                        height="880px"
+                        style={{
+                            zIndex: 1,
+                            position: "absolute",
+                            top: "400px",
+                            left: "50%",
+                            marginLeft: "-550px",
+                        }}
+                    ></img>
+                </center>
+                <center>
+                    <div
+                        style={{
+                            zIndex: 2,
+                            position: "absolute",
+                            top: "600px",
+                            left: "50%",
+                            marginLeft: "-700px",
+                        }}
+                    >
+                        <div className="drop-targets">
+                            <pre>                                  </pre>
+                            <img
+                                className="box7"
+                                id="box7"
+                            ></img>
+                            <pre>          </pre>
+                            <img
+                                className="box8"
+                                id="box8"
+                            ></img>
+                            <pre>          </pre>
+                            <img
+                                className="box9"
+                                id="box9"
+                            ></img>
+                            <pre></pre>
+                        </div>
+                        <div className="drop-targets">
+                            <pre>                           </pre>
+                            <img
+                                className="box4"
+                                id="box4"
+                            ></img>
+                            <pre>         </pre>
+                            <img
+                                className="box5"
+                                id="box5"
+                            ></img>
+                            <pre>         </pre>
+                            <img
+                                className="box6"
+                                id="box6"
+                            ></img>
+                            <pre></pre>
+                        </div>
+                        <div className="drop-targets">
+                            <pre>                      </pre>
+                            <img
+                                className="box1"
+                                id="box1"
+                            ></img>
+                            <pre>        </pre>
+                            <img
+                                className="box2"
+                                id="box2"
+                            ></img>
+                            <pre>         </pre>
+                            <img
+                                className="box3"
+                                id="box3"
+                            ></img>
+                            <pre></pre>
+                        </div>
+                    </div>
+                </center>
             </div>
-            <div class="drop-targets">
-                <pre>                            </pre>
-                <img class="box4" id="box4"></img>
-                <pre>         </pre><img class="box5" id="box5"></img>
-                <pre>         </pre><img class="box6" id="box6"></img>
-                <pre></pre>
-            </div>
-            <div class="drop-targets">
-                <pre>                 </pre>
-                <img class="box1" id="box1"></img>
-                <pre>      </pre><img class="box2" id="box2"></img>
-                <pre>      </pre><img class="box3" id="box3"></img>
-                <pre></pre>
-            </div>
-            
-        </div></center>
-        
-    </div>
         );
     }
 };
@@ -74,41 +139,119 @@ Waiting for the other player...
 
 exports.GetHand = class extends React.Component {
     render() {
-        const {parent} = this.props;
+        const {parent, xs, os} = this.props;
         return (
-        <div class="container">
-        <center><img src="https://imgur.com/CsxXjde.png" width="900px" height="720px" style={{zIndex:0, position:"absolute", top:"300px", left:"50%", marginLeft:"-450px"}}></img></center>
-        <center><img src="https://imgur.com/Hla2Ybx.png" width="900px" height="720px" style={{zIndex:1, position:"absolute", top:"300px", left:"50%", marginLeft:"-450px"}}></img></center>
-        <center><div style={{zIndex:2, position:"absolute", top:"445px", left:"50%",  marginLeft:"-500px"}}>
-           
-            <div class="drop-targets">
-                <pre>                                     </pre>
-                <img class="box7" onclick={() => parent.setimg('box7')} id="box7"></img>
-                <pre>             </pre><img class="box8" onclick={() => parent.setimg('box8')} id="box8"></img>
-                <pre>             </pre><img class="box9" onclick={() => parent.setimg('box9')} id="box9"></img>
-                <pre></pre>
+            <div className="container">
+                <p id="xs">ummm</p>
+                <p id="os"></p>
+                <center>
+                    <img
+                        src="https://imgur.com/CsxXjde.png"
+                        width="1100px"
+                        height="880px"
+                        style={{
+                            zIndex: 0,
+                            position: "absolute",
+                            top: "400px",
+                            left: "50%",
+                            marginLeft: "-550px",
+                        }}
+                    ></img>
+                </center>
+                <center>
+                    <img
+                        src="https://imgur.com/Hla2Ybx.png"
+                        width="1100px"
+                        height="880px"
+                        style={{
+                            zIndex: 1,
+                            position: "absolute",
+                            top: "400px",
+                            left: "50%",
+                            marginLeft: "-550px",
+                        }}
+                    ></img>
+                </center>
+                <center>
+                    <div
+                        style={{
+                            zIndex: 2,
+                            position: "absolute",
+                            top: "600px",
+                            left: "50%",
+                            marginLeft: "-700px",
+                        }}
+                    >
+                        <div className="drop-targets">
+                            <pre>                                  </pre>
+                            <img
+                                className="box7"
+                                onClick={() => parent.setImg("box7")}
+                                id="box7"
+                            ></img>
+                            <pre>          </pre>
+                            <img
+                                className="box8"
+                                onClick={() => parent.setImg("box8")}
+                                id="box8"
+                            ></img>
+                            <pre>          </pre>
+                            <img
+                                className="box9"
+                                onClick={() => parent.setImg("box9")}
+                                id="box9"
+                            ></img>
+                            <pre></pre>
+                        </div>
+                        <div className="drop-targets">
+                            <pre>                           </pre>
+                            <img
+                                className="box4"
+                                onClick={() => parent.setImg("box4")}
+                                id="box4"
+                            ></img>
+                            <pre>         </pre>
+                            <img
+                                className="box5"
+                                onClick={() => parent.setImg("box5")}
+                                id="box5"
+                            ></img>
+                            <pre>         </pre>
+                            <img
+                                className="box6"
+                                onClick={() => parent.setImg("box6")}
+                                id="box6"
+                            ></img>
+                            <pre></pre>
+                        </div>
+                        <div className="drop-targets">
+                            <pre>                      </pre>
+                            <img
+                                className="box1"
+                                onClick={() => parent.setImg("box1")}
+                                id="box1"
+                            ></img>
+                            <pre>        </pre>
+                            <img
+                                className="box2"
+                                onClick={() => parent.setImg("box2")}
+                                id="box2"
+                            ></img>
+                            <pre>         </pre>
+                            <img
+                                className="box3"
+                                onClick={() => parent.setImg("box3")}
+                                id="box3"
+                            ></img>
+                            <pre></pre>
+                        </div>
+                    </div>
+                </center>
             </div>
-            <div class="drop-targets">
-                <pre>                            </pre>
-                <img class="box4" onclick={() => parent.setimg('box4')} id="box4"></img>
-                <pre>         </pre><img class="box5" onclick={() => parent.setimg('box5')} id="box5"></img>
-                <pre>         </pre><img class="box6" onclick={() => parent.setimg('box6')} id="box6"></img>
-                <pre></pre>
-            </div>
-            <div class="drop-targets">
-                <pre>                 </pre>
-                <img class="box1" onclick={() => parent.setimg('box1')} id="box1"></img>
-                <pre>      </pre><img class="box2" onclick={() => parent.setimg('box2')} id="box2"></img>
-                <pre>      </pre><img class="box3" onclick={() => parent.setimg('box3')} id="box3"></img>
-                <pre></pre>
-            </div>
-            
-        </div></center>
-        
-    </div>
         );
     }
 };
+/* eslint-disable */
 
 /////////////////////
 // Timeout message //
