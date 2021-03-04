@@ -62,12 +62,13 @@ button {
 #bullutin {
     background-image: url("https://imgur.com/yvtuBXA.png");
     background-repeat: no-repeat;
+    font-family: monospace;
     background-size:cover;
     height:379px;
     width:1160px;
     padding:50px;
-    justify-content: center;
-    align-items: center;
+    justify-content: right;
+    align-items: right;
 
 }
 

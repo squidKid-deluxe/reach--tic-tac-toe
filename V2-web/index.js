@@ -15,7 +15,7 @@ const {
     standardUnit
 } = reach;
 // convert keyboard numeric keypad input layout to reach back end
-const handToInt = {
+const handToInt = { // index to reach
     "box7": 0,
     "box8": 1,
     "box9": 2,
@@ -27,17 +27,20 @@ const handToInt = {
     "box3": 8
 };
 
-const intToHand = {
-    1: "box1",
-    2: "box2",
-    3: "box3",
+const intToHand = { // index to gameplay
+    1: "box7",
+    2: "box8",
+    3: "box9",
     4: "box4",
     5: "box5",
     6: "box6",
-    7: "box7",
-    8: "box8",
-    9: "box9"
+    7: "box1",
+    8: "box2",
+    9: "box3"
 };
+
+const X_image = "https://imgur.com/eBsDAXr.png";
+const O_image = "https://imgur.com/h1xuIW1.png";
 
 // set default variables, wager, account fund amount and standard unit
 const defaults = {
@@ -65,7 +68,8 @@ class App extends React.Component {
     }
 
     async finalizeMount() {
-        const acc = await reach.getDefaultAccount();
+        var acc = await reach.getDefaultAccount();
+        console.log(acc)
         const balAtomic = await reach.balanceOf(acc);
         const bal = reach.formatCurrency(balAtomic, 4);
         this.setState({
@@ -131,42 +135,43 @@ class Player extends React.Component {
         return reach.hasRandom.random();
     }
     // get the move the user wants to play
-    async getHand(x, xs, os) {
+    async getHand(x, xs, os) { // bool(x) whether its X's turn
         // Present the buttons to the user so that they can actually select their move
-        const hand = await new Promise((resolveHandP) => {
-            this.setState({
-                view: "GetHand",
-                resolveHandP,
-                xs,
-                os
+        // hand is a box ID number relative to numeric keypad
+        let valid = 1; // occupied
+        let hand = null;
+        
+
+        while (valid > 0) { // while occupied
+            hand = await new Promise((resolveHandP) => {
+                this.setState({
+                    view: "GetHand",
+                    resolveHandP,
+                    xs, // 1d array of 1's 0's; 1 = occupied by X
+                    os // 1d array of 1's 0's; 1 = occupied by O
+                });
+
+                for (let i = 1; i < 10; i++) {
+                    console.log(`${i} ${intToHand[i]} xs[i-1]=${parseInt(xs[i-1])} os[i-1]=${parseInt(os[i-1])}`);
+                    if (parseInt(xs[i-1]) === 1) {
+                        document.getElementById(intToHand[i]).src = X_image; 
+                    }
+                    if (parseInt(os[i-1]) === 1) {
+                        document.getElementById(intToHand[i]).src = O_image;
+                    }
+            }
             });
-        });
+            valid = (
+                parseInt(os[handToInt[hand]])
+                + parseInt(xs[handToInt[hand]])
+            ); // should return 1=occupied / 0=vacant
+            console.log(`${valid}`);
 
-        document.getElementById("os").body = os[1];
-        document.getElementById("xs").body = xs[0];
+        };
 
-        document.getElementById(hand).src = {
-            x: "https://imgur.com/eBsDAXr.png",
-            o: "https://imgur.com/h1xuIW1.png",
-        }[x ? "x" : "o"];
-
-        for (var i = 0; i < xs.length; i++) {
-            if (xs[i] === 1) {
-                document.getElementById(intToHand[i + 1]).src = "https://imgur.com/eBsDAXr.png";
-            }
-        }
-
-        for (i = 0; i < xs.length; i++) {
-            if (os[i] === 1) {
-                document.getElementById(intToHand[i + 1]).src = "https://imgur.com/h1xuIW1.png";
-            }
-        }
-        // xs[0] == 1
-        // ? "https://imgur.com/eBsDAXr.png"
-        // : os[0] == 1
-        // ? "https://imgur.com/h1xuIW1.png"
-        // : "https://imgur.com/XJRRpD8.png"
-
+        console.log(`${os}`);
+        console.log(`${xs}`);
+        
         // Display that a move as been accepted
         this.setState({
             view: "GetHandb",
@@ -174,19 +179,18 @@ class Player extends React.Component {
         });
 
         document.getElementById(hand).src = {
-            x: "https://imgur.com/eBsDAXr.png",
-            o: "https://imgur.com/h1xuIW1.png",
+            x: X_image, 
+            o: O_image,
         }[x ? "x" : "o"];
 
-        for (i = 0; i < xs.length; i++) {
-            if (xs[i] === 1) {
-                document.getElementById(intToHand[i + 1]).src = "https://imgur.com/eBsDAXr.png";
+        console.log(`${hand}`);
+        for (let i = 1; i < 10; i++) {
+            console.log(`${i} ${intToHand[i]} xs[i-1]=${parseInt(xs[i-1])} os[i-1]=${parseInt(os[i-1])}`);
+            if (parseInt(xs[i-1]) === 1) {
+                document.getElementById(intToHand[i]).src = X_image; 
             }
-        }
-
-        for (i = 0; i < xs.length; i++) {
-            if (os[i] === 1) {
-                document.getElementById(intToHand[i + 1]).src = "https://imgur.com/h1xuIW1.png";
+            if (parseInt(os[i-1]) === 1) {
+                document.getElementById(intToHand[i]).src = O_image;
             }
         }
 
@@ -195,11 +199,36 @@ class Player extends React.Component {
     }
 
     // function to display who won
-    endsWith(won) {
+    endsWith(won, double, oppo, tie) {
         this.setState({
             view: "Finale",
-            whowon: won
+            won: won,
+            double: double,
+            oppo:oppo,
+            tie: tie
         });
+    }
+
+    print_data(data0, data1, data2, data3, data4, data5, data6, data7, data8, data9, data10, data11, data12, data13, data14, data15, data16) {
+        console.log(
+            `\nFee        ${data0}` +
+            `\nX cells    ${data1}` +
+            `\nO cells    ${data2}` +
+            `\noccupied   ${data3}` +
+            `\nX fees     ${data4}` +
+            `\nX ante     ${data5 / 10 ** 18}` +
+            `\nO fees     ${data6}` +
+            `\nO ante     ${data7 / 10 ** 18}` +
+            `\npot total  ${data8 / 10 ** 18}` +
+            `\nwager      ${data9 / 10 ** 18}` +
+            `\ntoA        ${data10 / 10 ** 18}` +
+            `\ntoB        ${data11 / 10 ** 18}` +
+            `\ndouble x   ${data12}`+
+            `\ndouble o   ${data13}`+
+            `\nx win      ${data14}`+
+            `\no win      ${data15}`+
+            `\ntie        ${data16}`
+        );
     }
 
     // Inform the players that a timeout has occurred
@@ -233,27 +262,20 @@ class Deployer extends Player {
 
     // Deploy the contract
     async deploy() {
-        console.log(`before deploying`);
         const ctc = this.props.acc.deploy(backend);
-        console.log(`after deploying`);
         this.setState({
             view: "Deploying",
             ctc
         });
-        console.log(`after deploying screen is set`);
         this.wager = reach.parseCurrency(this.state.wager); // UInt
-        console.log(`wager parsed`)
         backend.A(ctc, this);
-        console.log(`backend.A()`);
+        console.log(await reach.getDefaultAccount());
         const ctcInfo = await ctc.getInfo();
-        console.log(`got the contract info`)
         const ctcInfoStr = JSON.stringify(ctcInfo, null, 2);
-        console.log(`stringified the contract info`);
         this.setState({
             view: "WaitingForAttacher",
             ctcInfoStr
         });
-        console.log(`set the attacher waiting screen`);
     }
 
     // render the data returned by the class

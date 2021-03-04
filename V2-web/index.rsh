@@ -123,7 +123,7 @@ const Player = {
     ...hasRandom,
     // Start: Fun([], Null),
     getHand: Fun([Bool, Board, Board], UInt),
-    endsWith: Fun([Bool], Null),
+    endsWith: Fun([Bool, Bool, Bool, Bool], Null),
     informTimeout: Fun([], Null),
 };
 
@@ -131,6 +131,7 @@ const Player = {
 const Alice = {
     ...Player,
     wager: UInt,
+    print_data: Fun([Fees, Board, Board, Board, Board, UInt, Board, UInt, UInt, UInt, UInt, UInt, Bool, Bool, Bool, Bool, Bool], Null)
 };
 
 // Only Bob can access these JavaScript functions
@@ -146,8 +147,8 @@ export const main = Reach.App(
     {},
     // Participants
     [
-        Participant("A", Alice),
-        Participant("B", Bob),
+        ["A", Alice],
+        ["B", Bob],
     ],
     (A, B) => {
         // each([A, B], () => {
@@ -234,27 +235,27 @@ export const main = Reach.App(
         // At the end of the game, divy funds to the correct party
         const [toA, toB] = double_x_win ? [2 * wagerAmount, 0] : double_o_win ? [0, 2 * wagerAmount] : x_win ? [pot + x_unspent, o_unspent] : o_win ? [x_unspent, pot + o_unspent] : [o_wager + x_unspent, x_wager + o_unspent];
         // Use JS to print a statement by Alice
-        // A.only(() => {
-        //     interact.print_data(
-        //         fee_matrix,
-        //         state.xs,
-        //         state.os,
-        //         occupied_matrix(state),
-        //         fee_realized(state.xs, fee_matrix),
-        //         x_wager,
-        //         fee_realized(state.os, fee_matrix),
-        //         o_wager,
-        //         pot,
-        //         wagerAmount,
-        //         toA,
-        //         toB,
-        //         double_x_win,
-        //         double_o_win,
-        //         x_win,
-        //         o_win,
-        //         tie
-        //     );
-        // });
+        A.only(() => {
+            interact.print_data(
+                fee_matrix,
+                state.xs,
+                state.os,
+                occupied_matrix(state),
+                fee_realized(state.xs, fee_matrix),
+                x_wager,
+                fee_realized(state.os, fee_matrix),
+                o_wager,
+                pot,
+                wagerAmount,
+                toA,
+                toB,
+                double_x_win,
+                double_o_win,
+                x_win,
+                o_win,
+                tie
+            );
+        });
         // Transfer from smart contract to each respective player
         transfer(toA).to(A);
         transfer(toB).to(B);
@@ -262,11 +263,11 @@ export const main = Reach.App(
 
         // Use JavaScript to print that the game has ended.
         A.only(() => {
-            interact.endsWith(o_win);
+            interact.endsWith(x_win, double_x_win, double_o_win, tie);
         });
 
         B.only(() => {
-            interact.endsWith(x_win);
+            interact.endsWith(o_win, double_o_win, double_x_win, tie);
         });
     }
 );
