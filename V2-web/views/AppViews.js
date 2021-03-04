@@ -44,23 +44,26 @@ exports.Start = class extends React.Component {
         const {parent} = this.props;
         return (
             <div>
+            <br />
             <center>
             <div id="bullutin">
-                <p style={{fontSize: 30}}>
-                    Rules of the game:
-                    <br />
-                    1) if you decide to remove yourself from the game before it
-                    ends, YOU WILL LOSE ALL YOUR FUNDS!!!
-                    <br />
-                    2) Wager is collected at the start of the game, but fees for
-                    particular spots are collected throughout the game.
-                    <br />
-                    3) Fees for each move are 3/16s of your wager for corners, 2/16s of your wager for sides, and 4/16s of your wager for the middle.
-                    <br />
-                    4) Regardless of your move fees, you are responsible for your entire wager if your opponent gets a double win.
-                </p>
+                <pre style={{fontSize: 18, fontFamily: "monospace"}}>
+                    <br />                                             RULES OF THE GAME
+                    <br /><br /><hr />
+                    <br />1) A maximum total game wager is agreed to at the start of the game.
+                    <br />2) Fees for each move are:
+                    <br />    - 4/16s of your wager for the middle
+                    <br />    - 3/16s of your wager for corners
+                    <br />    - 2/16s of your wager for sides
+                    <br />3) If your opponent gets a double win, you lose your full wager. 
+                    <br />4) Each player is also personally responsible for transaction fees.
+                    <br />5) The deployer pays the initial contract transaction fee.
+                    <br />6) If you decide to remove yourself from the game before it
+                    <br />   ends, you lose everything you have put in the pot.
+                </pre>
                 </div>
             </center>
+                <br />
                 <button onClick={() => parent.finalizeMount()}>I Agree</button>
 
             </div>

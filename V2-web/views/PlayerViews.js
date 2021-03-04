@@ -13,27 +13,43 @@ const exports = {};
 
 exports.Finale = class extends React.Component {
     render() {
-        const {won} = this.props;
-        return (
-            <div>
-                <h1>{!won ? "YOU WIN!" : "YOU LOSE!"}</h1>
-            </div>
-        );
+        const {won, double, oppo_double, tie} = this.props;
+            let outcome = "";
+            if (double) {
+                outcome = "YOU WON TWO WAYS: YOU GAIN THE FULL GAME WAGER";
+            } else if (oppo_double) {
+                outcome = "YOU LOST TWO WAYS: YOU LOSE THE FULL GAME WAGER";
+            } else if (won) {
+                outcome = "YOU WON: YOU GAIN YOUR OPPONENT'S EXPENDITURE";
+            } else if (!won) {
+                outcome = "YOU LOST: YOU LOSE YOUR EXPENDITURE";
+            } else if (tie) {
+                outcome = "TIE: YOU GAIN YOUR OPPONENT'S COST AND LOSE YOUR OWN COST";
+            }
+
+            return (
+                <div>
+                    <h1>{outcome}</h1>
+                </div>
+            );
     }
 };
 
-////////////////////////////////////////////////////////
-// Get hand function for waiting fo the other player. //
-////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////
+// Get hand function for waiting for the other player. //
+/////////////////////////////////////////////////////////
 
 /* eslint-disable */
+
+//<div className="container">
+//<p id="xs">ummm</p>
+//<p id="os"></p>
+
 exports.GetHandb = class extends React.Component {
     render() {
         const {parent, xs, os} = this.props;
         return (
             <div className="container">
-                <p id="xs">ummm</p>
-                <p id="os"></p>
                 <center>
                     <img
                         src="https://imgur.com/CsxXjde.png"
