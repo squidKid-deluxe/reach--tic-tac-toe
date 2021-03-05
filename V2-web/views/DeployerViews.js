@@ -37,7 +37,7 @@ exports.SetWager = class extends React.Component {
                     }
                 />{" "}
                 {standardUnit}
-                <br />
+                <br /><br />
                 <button onClick={() => parent.setWager(wager)}>
                     Set wager
                 </button>
@@ -56,7 +56,7 @@ exports.Deploy = class extends React.Component {
         return (
             <div>
                 Wager (pay to deploy): <strong>{wager}</strong> {standardUnit}
-                <br />
+                <br /><br />
                 <button onClick={() => parent.deploy()}>Deploy</button>
             </div>
         );
@@ -83,7 +83,7 @@ exports.WaitingForAttacher = class extends React.Component {
         return (
             <div>
                 Waiting for Attacher to join...
-                <br /> Please give them this contract info:
+                <br /> Please give them this contract info:<br />
                 <pre className="ContractInfoD">{ctcInfoStr}</pre>
             </div>
         );

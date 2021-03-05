@@ -158,8 +158,6 @@ exports.GetHand = class extends React.Component {
         const {parent, xs, os} = this.props;
         return (
             <div className="container">
-                <p id="xs">ummm</p>
-                <p id="os"></p>
                 <center>
                     <img
                         src="https://imgur.com/CsxXjde.png"

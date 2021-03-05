@@ -31,6 +31,7 @@ exports.Attach = class extends React.Component {
             <div>
                 Please paste the contract info to attach to:
                 <br />
+                <br />
                 <textarea
                     className="ContractInfoA"
                     onChange={(e) =>
@@ -38,6 +39,7 @@ exports.Attach = class extends React.Component {
                     }
                     placeholder="{}"
                 />
+                <br />
                 <br />
                 <button
                     disabled={!ctcInfoStr}
@@ -97,7 +99,7 @@ exports.WaitingForTurn = class extends React.Component {
             <div>
                 Waiting for the other player...
                 <br />
-                Think about which move you want to play.
+                Get ready to play some serious Tic-Tac-Toe!
             </div>
         );
     }

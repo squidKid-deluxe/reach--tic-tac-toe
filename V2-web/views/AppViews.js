@@ -45,6 +45,7 @@ exports.Start = class extends React.Component {
         return (
             <div>
             <br />
+            <br />
             <center>
             <div id="bullutin">
                 <pre style={{fontSize: 18, fontFamily: "monospace"}}>
@@ -63,6 +64,7 @@ exports.Start = class extends React.Component {
                 </pre>
                 </div>
             </center>
+                <br />
                 <br />
                 <button onClick={() => parent.finalizeMount()}>I Agree</button>
 
@@ -132,12 +134,16 @@ exports.DeployerOrAttacher = class extends React.Component {
             <div>
                 Please select a role:
                 <br />
+                <br />
+                <br />
                 <p>
                     <button onClick={() => parent.selectDeployer()}>
                         Deployer
                     </button>
                     <br /> Set the wager, deploy the contract.
                 </p>
+                <br/>
+                <br />
                 <p>
                     <button onClick={() => parent.selectAttacher()}>
                         Attacher
