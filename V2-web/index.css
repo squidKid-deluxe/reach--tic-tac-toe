@@ -39,13 +39,17 @@ code {
 input[type="number"] {
     font-size: 20px;
     width: 100px;
-    color: #c1a57c;
+    color: #d1b58c;
+    padding:10px;
     background-color: black;
-    border-color: #c1a57c;
+    border-image-source: url("https://imgur.com/Oz4JZlv.png");
+    border-image-width: 5;
+    border-image-slice: 183;
+    border-image-repeat: round;
 }
 
 button {
-    font-size: 22px;
+    font-size: 24px;
     /*font-family:Chalkboard;*/
     background-image: url("https://imgur.com/5eD5R0x.png");
     width: 250px;
@@ -140,6 +144,10 @@ button {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    border-image-source: url("https://imgur.com/Oz4JZlv.png");
+    border-image-width: 10;
+    border-image-slice: 183;
+    border-image-repeat: round;
 
 
 }

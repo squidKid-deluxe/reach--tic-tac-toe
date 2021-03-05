@@ -14,6 +14,11 @@ import * as reach from "@reach-sh/stdlib/ETH";
 const {
     standardUnit
 } = reach;
+
+// If dev mode, use console.log(), else, don't
+const dev = false;
+
+
 // convert keyboard numeric keypad input layout to reach back end
 const handToInt = { // index to reach
     "box7": 0,
@@ -69,7 +74,9 @@ class App extends React.Component {
 
     async finalizeMount() {
         var acc = await reach.getDefaultAccount();
-        console.log(acc)
+        if (dev) {
+            console.log(acc)
+        }
         const balAtomic = await reach.balanceOf(acc);
         const bal = reach.formatCurrency(balAtomic, 4);
         this.setState({
@@ -152,7 +159,9 @@ class Player extends React.Component {
                 });
 
                 for (let i = 1; i < 10; i++) {
-                    console.log(`${i} ${intToHand[i]} xs[i-1]=${parseInt(xs[i-1])} os[i-1]=${parseInt(os[i-1])}`);
+                    if (dev) {
+                        console.log(`${i} ${intToHand[i]} xs[i-1]=${parseInt(xs[i-1])} os[i-1]=${parseInt(os[i-1])}`);
+                    }
                     if (parseInt(xs[i-1]) === 1) {
                         document.getElementById(intToHand[i]).src = X_image; 
                     }
@@ -165,12 +174,16 @@ class Player extends React.Component {
                 parseInt(os[handToInt[hand]])
                 + parseInt(xs[handToInt[hand]])
             ); // should return 1=occupied / 0=vacant
-            console.log(`${valid}`);
+            if (dev) {
+                console.log(`${valid}`);
+            }
 
         };
 
-        console.log(`${os}`);
-        console.log(`${xs}`);
+        if (dev) {
+            console.log(`${os}`);
+            console.log(`${xs}`);
+        }
         
         // Display that a move as been accepted
         this.setState({
@@ -183,9 +196,13 @@ class Player extends React.Component {
             o: O_image,
         }[x ? "x" : "o"];
 
-        console.log(`${hand}`);
+        if (dev) {
+            console.log(`${hand}`);
+        }
         for (let i = 1; i < 10; i++) {
-            console.log(`${i} ${intToHand[i]} xs[i-1]=${parseInt(xs[i-1])} os[i-1]=${parseInt(os[i-1])}`);
+            if (dev) {
+                console.log(`${i} ${intToHand[i]} xs[i-1]=${parseInt(xs[i-1])} os[i-1]=${parseInt(os[i-1])}`);
+            }
             if (parseInt(xs[i-1]) === 1) {
                 document.getElementById(intToHand[i]).src = X_image; 
             }
@@ -210,25 +227,27 @@ class Player extends React.Component {
     }
 
     print_data(data0, data1, data2, data3, data4, data5, data6, data7, data8, data9, data10, data11, data12, data13, data14, data15, data16) {
-        console.log(
-            `\nFee        ${data0}` +
-            `\nX cells    ${data1}` +
-            `\nO cells    ${data2}` +
-            `\noccupied   ${data3}` +
-            `\nX fees     ${data4}` +
-            `\nX ante     ${data5 / 10 ** 18}` +
-            `\nO fees     ${data6}` +
-            `\nO ante     ${data7 / 10 ** 18}` +
-            `\npot total  ${data8 / 10 ** 18}` +
-            `\nwager      ${data9 / 10 ** 18}` +
-            `\ntoA        ${data10 / 10 ** 18}` +
-            `\ntoB        ${data11 / 10 ** 18}` +
-            `\ndouble x   ${data12}`+
-            `\ndouble o   ${data13}`+
-            `\nx win      ${data14}`+
-            `\no win      ${data15}`+
-            `\ntie        ${data16}`
-        );
+        if (dev) {
+            console.log(
+                `\nFee        ${data0}` +
+                `\nX cells    ${data1}` +
+                `\nO cells    ${data2}` +
+                `\noccupied   ${data3}` +
+                `\nX fees     ${data4}` +
+                `\nX ante     ${data5 / 10 ** 18}` +
+                `\nO fees     ${data6}` +
+                `\nO ante     ${data7 / 10 ** 18}` +
+                `\npot total  ${data8 / 10 ** 18}` +
+                `\nwager      ${data9 / 10 ** 18}` +
+                `\ntoA        ${data10 / 10 ** 18}` +
+                `\ntoB        ${data11 / 10 ** 18}` +
+                `\ndouble x   ${data12}`+
+                `\ndouble o   ${data13}`+
+                `\nx win      ${data14}`+
+                `\no win      ${data15}`+
+                `\ntie        ${data16}`
+            );
+        }
     }
 
     // Inform the players that a timeout has occurred
@@ -269,7 +288,9 @@ class Deployer extends Player {
         });
         this.wager = reach.parseCurrency(this.state.wager); // UInt
         backend.A(ctc, this);
-        console.log(await reach.getDefaultAccount());
+        if (dev) {
+            console.log(await reach.getDefaultAccount());
+        }
         const ctcInfo = await ctc.getInfo();
         const ctcInfoStr = JSON.stringify(ctcInfo, null, 2);
         this.setState({
