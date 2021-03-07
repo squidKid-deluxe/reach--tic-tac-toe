@@ -6,13 +6,14 @@ const exports = {...PlayerViews};
 //////////////////////////////////
 // Wrapper page fo the deployer //
 //////////////////////////////////
-
+/* eslint-disable */
 exports.Wrapper = class extends React.Component {
     render() {
         const {content} = this.props;
         return (
             <div className="Deployer">
-                <h2>Deployer (Alice)</h2>
+                <h2>YOU ARE:</h2>
+                &nbsp;<img src="https://imgur.com/eBsDAXr.png" width="60px" height="60px"></img>
                 {content}
             </div>
         );
@@ -82,12 +83,12 @@ exports.WaitingForAttacher = class extends React.Component {
         const {ctcInfoStr} = this.props;
         return (
             <div>
-                Waiting for Attacher to join...
+                Waiting for O to join...
                 <br /> Please give them this contract info:<br />
                 <pre className="ContractInfoD">{ctcInfoStr}</pre>
             </div>
         );
     }
 };
-
+/* eslint-disable */
 export default exports;

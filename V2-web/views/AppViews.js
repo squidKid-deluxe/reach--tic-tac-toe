@@ -16,16 +16,9 @@ exports.Wrapper = class extends React.Component {
             <div className="App">
                 <br />
                 <img
-                    src="https://i.imgur.com/j5j7Nqb.png"
-                    alt="logo"
-                    style={{width: 500, height: 50}}
-                ></img>
-                <br />
-                <br />
-                <img
-                    src="https://imgur.com/CvC4dQR.png"
+                    src="https://i.imgur.com/Z5BHZ4E.png"
                     alt="title"
-                    style={{width: 500, height: 50}}
+                    style={{width: 700, height: 100}}
                 ></img>
                 <header className="App-header" id="root">
                     {content}
@@ -48,19 +41,20 @@ exports.Start = class extends React.Component {
             <br />
             <center>
             <div id="bullutin">
-                <pre style={{fontSize: 18, fontFamily: "monospace"}}>
-                    <br />                                             RULES OF THE GAME
-                    <br /><br /><hr />
-                    <br />1) A maximum total game wager is agreed to at the start of the game.
-                    <br />2) Fees for each move are:
-                    <br />    - 4/16s of your wager for the middle
-                    <br />    - 3/16s of your wager for corners
-                    <br />    - 2/16s of your wager for sides
-                    <br />3) If your opponent gets a double win, you lose your full wager. 
-                    <br />4) Each player is also personally responsible for transaction fees.
-                    <br />5) The deployer pays the initial contract transaction fee.
-                    <br />6) If you decide to remove yourself from the game before it
-                    <br />   ends, you lose everything you have put in the pot.
+                <pre style={{fontSize: 17, fontFamily: "monospace"}}>
+                    <p style={{fontSize:28}}>RULES OF THE GAME</p>
+                    <hr />
+                    <br />  1) A maximum total game wager is agreed to at the start of the game.                                               .
+                    <br />  2) The costs for each move are:                                                                                    .
+                    <br />      - 4/16s of your wager for the middle                                                                           .
+                    <br />      - 3/16s of your wager for corners                                                                              .
+                    <br />      - 2/16s of your wager for sides                                                                                .
+                    <br />  3) If your opponent gets a double win, you lose your full wager.                                                   .
+                    <br />  4) Each player is also personally responsible for transaction fees.                                                .
+                    <br />  5) X always pays the initial contract transaction fee.                                                         .
+                    <br />  6) If you decide to remove yourself from the game before it ends, you lose everything you have put in the pot.     .
+                    <br />  7) Upon a tie game, you lose everything you have put in the pot and gain your opponent's expenditure.              .
+                    <br />  8) The person to play the first move is chosen randomly.                                                           .
                 </pre>
                 </div>
             </center>
@@ -106,7 +100,7 @@ exports.FundAccount = class extends React.Component {
                 {standardUnit}?
                 <br />
                 (This only works on certain devnets)
-                <br />
+                <br /><br />
                 <input
                     type="number"
                     placeholder={defaultFundAmt}
@@ -114,9 +108,11 @@ exports.FundAccount = class extends React.Component {
                         this.setState({amt: e.currentTarget.value})
                     }
                 />
+                &nbsp;&nbsp;&nbsp;&nbsp;              
                 <button onClick={() => parent.fundAccount(amt)}>
                     Fund Account
                 </button>
+                &nbsp;&nbsp;&nbsp;&nbsp;
                 <button onClick={() => parent.skipFundAccount()}>Skip</button>
             </div>
         );
@@ -138,17 +134,17 @@ exports.DeployerOrAttacher = class extends React.Component {
                 <br />
                 <p>
                     <button onClick={() => parent.selectDeployer()}>
-                        Deployer
+                        X
                     </button>
-                    <br /> Set the wager, deploy the contract.
+                    <br /> Set wager and deploy a contract as X
                 </p>
                 <br/>
                 <br />
                 <p>
                     <button onClick={() => parent.selectAttacher()}>
-                        Attacher
+                        O
                     </button>
-                    <br /> Attach to the Deployer's contract.
+                    <br /> Agree to X's wager and join the contract as O
                 </p>
             </div>
         );

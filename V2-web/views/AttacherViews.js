@@ -6,13 +6,14 @@ const exports = {...PlayerViews};
 ////////////////////////////////////////////////////////////////////////////////////////
 // Wrapper for hte attacher to be displayed at the top of every page fo rht eattacher //
 ////////////////////////////////////////////////////////////////////////////////////////
-
+/* eslint-disable */
 exports.Wrapper = class extends React.Component {
     render() {
         const {content} = this.props;
         return (
             <div className="Attacher">
-                <h2>Attacher (Bob)</h2>
+                <h2>YOU ARE:</h2>
+                &nbsp;<img src="https://imgur.com/h1xuIW1.png" width="60px" height="60px"></img>
                 {content}
             </div>
         );
@@ -73,8 +74,8 @@ exports.AcceptTerms = class extends React.Component {
         return (
             <div>
                 The terms of the game are:
-                <br /> Wager: {wager} {standardUnit}
-                <br />
+                <br /><br /> Wager: {wager} {standardUnit}
+                <br /><br />
                 <button
                     disabled={disabled}
                     onClick={() => {
@@ -104,5 +105,5 @@ exports.WaitingForTurn = class extends React.Component {
         );
     }
 };
-
+/* eslint-disable */
 export default exports;

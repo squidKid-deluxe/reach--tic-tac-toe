@@ -13,20 +13,17 @@ const exports = {};
 
 exports.Finale = class extends React.Component {
     render() {
-        const {won, double, oppo_double, tie} = this.props;
+        const {won, double, tie} = this.props;
             let outcome = "";
             if (double) {
                 outcome = "YOU WON TWO WAYS: YOU GAIN THE FULL GAME WAGER";
-            } else if (oppo_double) {
-                outcome = "YOU LOST TWO WAYS: YOU LOSE THE FULL GAME WAGER";
+            } else if (tie) {
+                outcome = "TIE: YOU GAIN YOUR OPPONENT'S EXPENDITURE AND LOSE YOUR OWN";
             } else if (won) {
                 outcome = "YOU WON: YOU GAIN YOUR OPPONENT'S EXPENDITURE";
-            } else if (!won) {
-                outcome = "YOU LOST: YOU LOSE YOUR EXPENDITURE";
-            } else if (tie) {
-                outcome = "TIE: YOU GAIN YOUR OPPONENT'S COST AND LOSE YOUR OWN COST";
-            }
-
+            } else {
+                outcome = "YOU LOST.";
+            } 
             return (
                 <div>
                     <h1>{outcome}</h1>
@@ -49,101 +46,125 @@ exports.GetHandb = class extends React.Component {
     render() {
         const {parent, xs, os} = this.props;
         return (
-            <div className="container">
-                <center>
-                    <img
-                        src="https://imgur.com/CsxXjde.png"
-                        width="1100px"
-                        height="880px"
-                        style={{
-                            zIndex: 0,
-                            position: "absolute",
-                            top: "400px",
-                            left: "50%",
-                            marginLeft: "-550px",
-                        }}
-                    ></img>
-                </center>
-                <center>
-                    <img
-                        src="https://imgur.com/Hla2Ybx.png"
-                        width="1100px"
-                        height="880px"
-                        style={{
-                            zIndex: 1,
-                            position: "absolute",
-                            top: "400px",
-                            left: "50%",
-                            marginLeft: "-550px",
-                        }}
-                    ></img>
-                </center>
-                <center>
-                    <div
-                        style={{
-                            zIndex: 2,
-                            position: "absolute",
-                            top: "600px",
-                            left: "50%",
-                            marginLeft: "-700px",
-                        }}
-                    >
-                        <div className="drop-targets">
-                            <pre>                                  </pre>
-                            <img
-                                className="box7"
-                                id="box7"
-                            ></img>
-                            <pre>          </pre>
-                            <img
-                                className="box8"
-                                id="box8"
-                            ></img>
-                            <pre>          </pre>
-                            <img
-                                className="box9"
-                                id="box9"
-                            ></img>
-                            <pre></pre>
+            <div>
+                <audio id="bling">
+                    <source src="https://orangefreesounds.com/wp-content/uploads/2021/03/Air-horn-noise.mp3" type="audio/mpeg"></source>
+                </audio>
+                <div className="container">
+                    <center>
+                        <img
+                            src="https://i.imgur.com/MU4IAQ3.png"
+                            width="1100px"
+                            height="880px"
+                            style={{
+                                zIndex: 1,
+                                top:"0px",
+                                position: "absolute",
+                                left: "50%",
+                                marginLeft: "-550px",
+                            }}
+                        ></img>
+                    </center>
+                    <center>
+                        <div
+                            style={{
+                                zIndex: 2,
+                                position: "absolute",
+                                top: "170px",
+                                left: "50%",
+                                marginLeft: "-720px",
+                            }}
+                        >
+                            <div className="drop-targets" >
+                                <pre>                                  </pre>
+                                <img
+                                    className="box7"
+                                    onClick={() => parent.setImg("box7")}
+                                    id="box7"
+                                ></img>
+                                <pre>      </pre>
+                                <img
+                                    className="box8"
+                                    onClick={() => parent.setImg("box8")}
+                                    id="box8"
+                                ></img>
+                                <pre>      </pre>
+                                <img
+                                    className="box9"
+                                    onClick={() => parent.setImg("box9")}
+                                    id="box9"
+                                ></img>
+                                <pre></pre>
+                            </div>
                         </div>
-                        <div className="drop-targets">
-                            <pre>                           </pre>
-                            <img
-                                className="box4"
-                                id="box4"
-                            ></img>
-                            <pre>         </pre>
-                            <img
-                                className="box5"
-                                id="box5"
-                            ></img>
-                            <pre>         </pre>
-                            <img
-                                className="box6"
-                                id="box6"
-                            ></img>
-                            <pre></pre>
+                        <div
+                            style={{
+                                zIndex: 3,
+                                position: "absolute",
+                                top: "300px",
+                                left: "50%",
+                                marginLeft: "-720px",
+                            }}
+                        >
+
+
+                            <div className="drop-targets" >
+                                <pre>                            </pre>
+                                <img
+                                    className="box4"
+                                    onClick={() => parent.setImg("box4")}
+                                    id="box4"
+                                ></img>
+                                <pre>        </pre>
+                                <img
+                                    className="box5"
+                                    onClick={() => parent.setImg("box5")}
+                                    id="box5"
+                                ></img>
+                                <pre>       </pre>
+                                <img
+                                    className="box6"
+                                    onClick={() => parent.setImg("box6")}
+                                    id="box6"
+                                ></img>
+                                <pre></pre>
+                            </div>
                         </div>
-                        <div className="drop-targets">
-                            <pre>                      </pre>
-                            <img
-                                className="box1"
-                                id="box1"
-                            ></img>
-                            <pre>        </pre>
-                            <img
-                                className="box2"
-                                id="box2"
-                            ></img>
-                            <pre>         </pre>
-                            <img
-                                className="box3"
-                                id="box3"
-                            ></img>
-                            <pre></pre>
+                        <div
+                            style={{
+                                zIndex: 4,
+                                position: "absolute",
+                                top: "420px",
+                                left: "50%",
+                                marginLeft: "-720px",
+                            }}
+                        >
+
+
+                            <div className="drop-targets" >
+                                <pre>                       </pre>
+                                <img
+                                    className="box1"
+                                    onClick={() => parent.setImg("box1")}
+                                    id="box1"
+                                ></img>
+                                <pre>       </pre>
+                                <img
+                                    className="box2"
+                                    onClick={() => parent.setImg("box2")}
+                                    id="box2"
+                                ></img>
+                                <pre>        </pre>
+                                <img
+                                    className="box3"
+                                    onClick={() => parent.setImg("box3")}
+                                    id="box3"
+                                ></img>
+                                <pre> </pre>
+                            </div>
                         </div>
-                    </div>
-                </center>
+                    </center>
+                </div>
             </div>
         );
     }
@@ -157,110 +178,126 @@ exports.GetHand = class extends React.Component {
     render() {
         const {parent, xs, os} = this.props;
         return (
-            <div className="container">
-                <center>
-                    <img
-                        src="https://imgur.com/CsxXjde.png"
-                        width="1100px"
-                        height="880px"
-                        style={{
-                            zIndex: 0,
-                            position: "absolute",
-                            top: "400px",
-                            left: "50%",
-                            marginLeft: "-550px",
-                        }}
-                    ></img>
-                </center>
-                <center>
-                    <img
-                        src="https://imgur.com/Hla2Ybx.png"
-                        width="1100px"
-                        height="880px"
-                        style={{
-                            zIndex: 1,
-                            position: "absolute",
-                            top: "400px",
-                            left: "50%",
-                            marginLeft: "-550px",
-                        }}
-                    ></img>
-                </center>
-                <center>
-                    <div
-                        style={{
-                            zIndex: 2,
-                            position: "absolute",
-                            top: "600px",
-                            left: "50%",
-                            marginLeft: "-700px",
-                        }}
-                    >
-                        <div className="drop-targets">
-                            <pre>                                  </pre>
-                            <img
-                                className="box7"
-                                onClick={() => parent.setImg("box7")}
-                                id="box7"
-                            ></img>
-                            <pre>          </pre>
-                            <img
-                                className="box8"
-                                onClick={() => parent.setImg("box8")}
-                                id="box8"
-                            ></img>
-                            <pre>          </pre>
-                            <img
-                                className="box9"
-                                onClick={() => parent.setImg("box9")}
-                                id="box9"
-                            ></img>
-                            <pre></pre>
+            <div style={{top:"0px"}}>
+                <audio id="bling">
+                    <source src="https://orangefreesounds.com/wp-content/uploads/2021/03/Air-horn-noise.mp3" type="audio/mpeg"></source>
+                </audio>
+                <div className="container">
+                    <center>
+                        <img
+                            src="https://i.imgur.com/MU4IAQ3.png"
+                            width="1100px"
+                            height="880px"
+                            style={{
+                                zIndex: 1,
+                                top:"0px",
+                                position: "absolute",
+                                left: "50%",
+                                marginLeft: "-550px",
+                            }}
+                        ></img>
+                    </center>
+                    <center>
+                        <div
+                            style={{
+                                zIndex: 2,
+                                position: "absolute",
+                                top: "170px",
+                                left: "50%",
+                                marginLeft: "-720px",
+                            }}
+                        >
+                            <div className="drop-targets" >
+                                <pre>                                  </pre>
+                                <img
+                                    className="box7"
+                                    onClick={() => parent.setImg("box7")}
+                                    id="box7"
+                                ></img>
+                                <pre>      </pre>
+                                <img
+                                    className="box8"
+                                    onClick={() => parent.setImg("box8")}
+                                    id="box8"
+                                ></img>
+                                <pre>      </pre>
+                                <img
+                                    className="box9"
+                                    onClick={() => parent.setImg("box9")}
+                                    id="box9"
+                                ></img>
+                                <pre></pre>
+                            </div>
                         </div>
-                        <div className="drop-targets">
-                            <pre>                           </pre>
-                            <img
-                                className="box4"
-                                onClick={() => parent.setImg("box4")}
-                                id="box4"
-                            ></img>
-                            <pre>         </pre>
-                            <img
-                                className="box5"
-                                onClick={() => parent.setImg("box5")}
-                                id="box5"
-                            ></img>
-                            <pre>         </pre>
-                            <img
-                                className="box6"
-                                onClick={() => parent.setImg("box6")}
-                                id="box6"
-                            ></img>
-                            <pre></pre>
+                        <div
+                            style={{
+                                zIndex: 3,
+                                position: "absolute",
+                                top: "300px",
+                                left: "50%",
+                                marginLeft: "-720px",
+                            }}
+                        >
+
+
+                            <div className="drop-targets" >
+                                <pre>                            </pre>
+                                <img
+                                    className="box4"
+                                    onClick={() => parent.setImg("box4")}
+                                    id="box4"
+                                ></img>
+                                <pre>        </pre>
+                                <img
+                                    className="box5"
+                                    onClick={() => parent.setImg("box5")}
+                                    id="box5"
+                                ></img>
+                                <pre>       </pre>
+                                <img
+                                    className="box6"
+                                    onClick={() => parent.setImg("box6")}
+                                    id="box6"
+                                ></img>
+                                <pre></pre>
+                            </div>
                         </div>
-                        <div className="drop-targets">
-                            <pre>                      </pre>
-                            <img
-                                className="box1"
-                                onClick={() => parent.setImg("box1")}
-                                id="box1"
-                            ></img>
-                            <pre>        </pre>
-                            <img
-                                className="box2"
-                                onClick={() => parent.setImg("box2")}
-                                id="box2"
-                            ></img>
-                            <pre>         </pre>
-                            <img
-                                className="box3"
-                                onClick={() => parent.setImg("box3")}
-                                id="box3"
-                            ></img>
-                            <pre></pre>
+                        <div
+                            style={{
+                                zIndex: 4,
+                                position: "absolute",
+                                top: "420px",
+                                left: "50%",
+                                marginLeft: "-720px",
+                            }}
+                        >
+
+
+                            <div className="drop-targets" >
+                                <pre>                       </pre>
+                                <img
+                                    className="box1"
+                                    onClick={() => parent.setImg("box1")}
+                                    id="box1"
+                                ></img>
+                                <pre>       </pre>
+                                <img
+                                    className="box2"
+                                    onClick={() => parent.setImg("box2")}
+                                    id="box2"
+                                ></img>
+                                <pre>        </pre>
+                                <img
+                                    className="box3"
+                                    onClick={() => parent.setImg("box3")}
+                                    id="box3"
+                                ></img>
+                                <pre> </pre>
+                            </div>
                         </div>
-                    </div>
-                </center>
+                    </center>
+                </div>
+                <center>Your turn.</center>
             </div>
         );
     }
