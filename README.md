@@ -1,5 +1,5 @@
 
-<pre>&nbspPay-to-play
+<pre>Pay-to-play
 &nbspT | i | c&nbsp
 -----------
 &nbspT | a | c&nbsp
