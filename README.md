@@ -1,10 +1,10 @@
 
 ## <pre>Pay-to-play
-&nbspT | i | c&nbsp
------------
-&nbspT | a | c&nbsp
------------
-&nbspT | o | e&nbsp</pre>
+## &nbspT | i | c&nbsp
+## -----------
+## &nbspT | a | c&nbsp
+## -----------
+## &nbspT | o | e&nbsp</pre>
 ## Created with reach
 
 
