@@ -1,5 +1,5 @@
 
-## <pre>Pay-to-play<br /><br />&nbsp;T | i | c&nbsp;<br />-----------<br />&nbsp;T | a | c&nbsp;<br />-----------<br />&nbsp;T | o | e&nbsp;</pre>
+## <pre style="bakground-color:rgba(0,0,0,0)">Pay-to-play<br /><br />&nbsp;T | i | c&nbsp;<br />-----------<br />&nbsp;T | a | c&nbsp;<br />-----------<br />&nbsp;T | o | e&nbsp;</pre>
 ## Created with reach
 
 
