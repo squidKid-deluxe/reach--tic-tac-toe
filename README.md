@@ -1,11 +1,11 @@
 
 <pre>Pay-to-play</pre>
-<pre>&nbsp T  |  i  |  c &nbsp</pre>
-<pre>-----------------</pre>
-<pre>&nbsp T  |  a  |  c &nbsp</pre>
-<pre>-----------------</pre>
-<pre>&nbsp T  |  o  |  e &nbsp</pre>
-<pre>created with reach</pre>
+&nbsp T  |  i  |  c &nbsp
+-----------------
+&nbsp T  |  a  |  c &nbsp
+-----------------
+&nbsp T  |  o  |  e &nbsp
+created with reach</pre>
 
 
 
