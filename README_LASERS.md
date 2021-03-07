@@ -11,11 +11,6 @@ Eye candy and user-friendliness:
  - Both board and pieces are images and have 3D-like perspective planes.
  - Images, rather than plain colors, are used as much as possible.
  - User-friendly terminology is used for deployer and attacher labeling.
- 
-#### Coming soon:
 
 Game modes:
- - Four different game modes will be available on the web version of the game, these being: Standard, 3D FOMO, FOMO, and Best of.
- - Three different game modes will be also availible on the CLI version: Simulation mode, Live mode, and 3D Live mode.
-
-
+ - Two different game modes are availible on the CLI version: Simulation mode and Live mode.
