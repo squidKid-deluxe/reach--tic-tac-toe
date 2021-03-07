@@ -263,11 +263,11 @@ export const main = Reach.App(
 
         // Use JavaScript to print that the game has ended.
         A.only(() => {
-            interact.endsWith(x_win, double_x_win, double_o_win, tie);
+            interact.endsWith(x_win, double_x_win, tie);
         });
 
         B.only(() => {
-            interact.endsWith(o_win, double_o_win, double_x_win, tie);
+            interact.endsWith(o_win, double_o_win, tie);
         });
     }
 );

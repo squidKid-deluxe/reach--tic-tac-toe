@@ -64,7 +64,7 @@ button {
 }
 
 #bullutin {
-    background-image: url("https://imgur.com/yvtuBXA.png");
+    background-image: url("https://i.imgur.com/tUoqNrd.png");
     background-repeat: no-repeat;
     font-family: monospace;
     background-size:cover;
@@ -158,10 +158,10 @@ button {
     align-items: center;
 }
 .box1 {
-    height: 50px;
-    width: 50px;
+    height: 100px;
+    width: 126px;
     border:none;
-    margin-bottom: 100px;
+    margin-bottom: 85px;
     /* align items in the box */
     display: flex;
     flex-direction: column;
@@ -170,8 +170,8 @@ button {
 
 }
 .box2 {
-    height: 50px;
-    width: 50px;
+    height: 104px;
+    width: 130px;
     border:none;
     /* align items in the box */
     display: flex;
@@ -181,10 +181,10 @@ button {
 
 }
 .box3 {
-    height: 50px;
-    width: 50px;
+    height: 107px;
+    width: 134px;
     border:none;
-    margin-top: 100px;
+    margin-top: 85px;
     /* align items in the box */
     display: flex;
     flex-direction: column;
@@ -193,10 +193,10 @@ button {
 
 }
 .box4 {
-    height: 50px;
-    width: 50px;
+    height: 92px;
+    width: 115px;
     border:none;
-    margin-bottom: 67px;
+    margin-bottom: 60px;
     /* align items in the box */
     display: flex;
     flex-direction: column;
@@ -205,8 +205,8 @@ button {
 
 }
 .box5 {
-    height: 50px;
-    width: 50px;
+    height: 95px;
+    width: 119px;
     border:none;
     /* align items in the box */
     display: flex;
@@ -216,10 +216,10 @@ button {
 
 }
 .box6 {
-    height: 50px;
-    width: 50px;
+    height: 99px;
+    width: 123px;
     border:none;
-    margin-top: 67px;
+    margin-top: 60px;
     /* align items in the box */
     display: flex;
     flex-direction: column;
@@ -228,10 +228,10 @@ button {
 
 }
 .box7 {
-    height: 50px;
-    width: 50px;
+    height: 84px;
+    width: 105px;
     border:none;
-    margin-bottom: 55px;
+    margin-bottom: 60px;
     /* align items in the box */
     display: flex;
     flex-direction: column;
@@ -240,8 +240,8 @@ button {
 
 }
 .box8 {
-    height: 50px;
-    width: 50px;
+    height: 87px;
+    width: 109px;
     border:none;
     /* align items in the box */
     display: flex;
@@ -251,10 +251,10 @@ button {
 
 }
 .box9 {
-    height: 50px;
-    width: 50px;
+    height: 90px;
+    width: 113px;
     border:none;
-    margin-top: 55px;
+    margin-top: 60px;
     /* align items in the box */
     display: flex;
     flex-direction: column;

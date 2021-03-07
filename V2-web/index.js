@@ -16,8 +16,10 @@ const {
 } = reach;
 
 // If dev mode, use console.log(), else, don't
-const dev = false;
+const dev = true;
 
+// sleep function for delaying until move_made soud is played
+const sleep = async (milliseconds) => await new Promise(resolve => setTimeout(resolve, milliseconds));
 
 // convert keyboard numeric keypad input layout to reach back end
 const handToInt = { // index to reach
@@ -170,6 +172,9 @@ class Player extends React.Component {
                     }
             }
             });
+            var blinger = document.getElementById("bling");
+            blinger.play();
+
             valid = (
                 parseInt(os[handToInt[hand]])
                 + parseInt(xs[handToInt[hand]])
@@ -179,6 +184,8 @@ class Player extends React.Component {
             }
 
         };
+        
+        sleep(4000);
 
         if (dev) {
             console.log(`${os}`);
@@ -221,7 +228,6 @@ class Player extends React.Component {
             view: "Finale",
             won: won,
             double: double,
-            oppo:oppo,
             tie: tie
         });
     }
