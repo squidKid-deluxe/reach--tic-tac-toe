@@ -1,6 +1,6 @@
 
-## <pre style="bakground-color:rgba(0,0,0,0)">Pay-to-play<br /><br />&nbsp;T | i | c&nbsp;<br />-----------<br />&nbsp;T | a | c&nbsp;<br />-----------<br />&nbsp;T | o | e&nbsp;</pre>
-## Created with reach
+# <pre style="bakground-color:rgba(0,0,0,0)">Pay-to-play<br /><br />&nbsp;T | i | c&nbsp;<br />-----------<br />&nbsp;T | a | c&nbsp;<br />-----------<br />&nbsp;T | o | e&nbsp;</pre>
+# Created with reach
 
 
 
@@ -8,9 +8,7 @@
 <img src="https://imgur.com/KMlY5tm.png">	
 </p>
 
-# Added lasers for:
-
-## Pay to play Tic-Tac-Toe
+# Added lasers:
 
 Winning logic:
  - Double win occours when a player gets two sets of three-in-a-rows, and that player is awarded full wager.
