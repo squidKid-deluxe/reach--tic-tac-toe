@@ -14,6 +14,12 @@
 <img src="https://imgur.com/3jzfm6v.png" width="250wh">
 </p>
 
+<p align="center"> 
+<img src="https://imgur.com/dOGNlt2.png" height="500wh">	
+</p>
+
+
+
 # Added lasers:
 
 Winning logic:
