@@ -11,7 +11,7 @@
 
 <p align="center"> 
 <img src="https://imgur.com/ksnlkCt.png" height="250wh">	
-<img src="https://imgur.com/3jzfm6v.png" width="250wh">
+<img src="https://imgur.com/7o3qmPN.png" width="250wh">
 </p>
 
 <p align="center" height="500wh" width="1000wh"> 
