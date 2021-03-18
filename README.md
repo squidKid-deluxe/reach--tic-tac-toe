@@ -9,6 +9,11 @@
 <img src="https://imgur.com/xzm15SS.png">
 </p>
 
+<p align="center"> 
+<img src="https://imgur.com/ksnlkCt.png">	
+<img src="https://imgur.com/3jzfm6v.png" width=500>
+</p>
+
 # Added lasers:
 
 Winning logic:
