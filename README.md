@@ -35,3 +35,7 @@ Eye candy and user-friendliness:
 Game modes:
  - Two different game modes are availible on the CLI version: Simulation mode and Live mode.
 
+Long demo:https://drive.google.com/file/d/1zUQNY-pKecVXTB08a60T08BVPaghnFsY/view?usp=sharing
+
+Short overview:https://drive.google.com/file/d/1NIC44kzJ1gUnx4urIP8Fk-iCT2NdPNGD/view?usp=sharing
+
