@@ -15,7 +15,7 @@
 </p>
 
 <p align="center"> 
-<img src="https://imgur.com/dOGNlt2.png" height="250wh" width="500wh">	
+<img src="https://imgur.com/dOGNlt2.png" height="500wh" width="1000wh">	
 </p>
 
 
