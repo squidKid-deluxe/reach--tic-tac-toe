@@ -14,7 +14,7 @@
 <img src="https://imgur.com/3jzfm6v.png" width="250wh">
 </p>
 
-<p align="center"> 
+<p align="center" height="500wh" width="1000wh"> 
 <img src="https://imgur.com/dOGNlt2.png" height="500wh" width="1000wh">	
 </p>
 
