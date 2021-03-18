@@ -10,8 +10,8 @@
 </p>
 
 <p align="center"> 
-<img src="https://imgur.com/ksnlkCt.png">	
-<img src="https://imgur.com/3jzfm6v.png" width=500>
+<img src="https://imgur.com/ksnlkCt.png" width=250>	
+<img src="https://imgur.com/3jzfm6v.png" width=250>
 </p>
 
 # Added lasers:
