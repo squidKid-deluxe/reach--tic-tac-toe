@@ -6,6 +6,7 @@
 
 <p align="center"> 
 <img src="https://imgur.com/rmmnyFS.png">	
+<img src="https://imgur.com/xzm15SS.png">
 </p>
 
 # Added lasers:
